@@ -1,0 +1,16 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: notification
+  mail:
+    host: smtp.gmail.com
+    password: zxywkycbcpvnjokc
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    username: asusnik241201@gmail.com

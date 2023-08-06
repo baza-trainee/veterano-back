@@ -1,0 +1,40 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: auth
+  datasource:
+    password: password
+    url: jdbc:postgresql://postgres:5432/veterano_local_db
+    username: zdoryk
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+
+  rabbitmq:
+    addresses: rabbitmq:5672
+
+config:
+  urls:
+    approve-register: http://18.133.79.159:8080/api/v1/users/auth/approve-token?token=
+
+security:
+  jwt:
+    token:
+      secret-key: 923593859385983912541253261
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+    enabled: true
