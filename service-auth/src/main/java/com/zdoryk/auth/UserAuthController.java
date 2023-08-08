@@ -1,6 +1,9 @@
 package com.zdoryk.auth;
 
 import com.zdoryk.core.*;
+import com.zdoryk.dto.UserDto;
+import com.zdoryk.dto.UserLoginRequest;
+import com.zdoryk.dto.UserRegistrationRequest;
 import com.zdoryk.exceptions.RateLimitExceededException;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
@@ -51,12 +54,10 @@ public class UserAuthController extends GenericController {
             @Valid @RequestBody
             UserRegistrationRequest userRegistrationRequest){
 
-        System.out.println(userRegistrationRequest.getPassword());
-
         if(bucket.tryConsume(1L)){
             return createResponse(
                     Map.of("token", userAuthService.registerUser(userRegistrationRequest)),
-                    "User registered",
+                    "User registered, please activate account",
                     HttpStatus.OK
             );
         }
@@ -67,6 +68,7 @@ public class UserAuthController extends GenericController {
     }
     @GetMapping("/approve-token")
     public void approveToken(@RequestParam("token") String token){
+
         if(bucket.tryConsume(1L)) {
             userAuthService.confirmToken(token);
         }
@@ -80,7 +82,6 @@ public class UserAuthController extends GenericController {
         log.info("Trying to validate token {}", token);
         return ResponseEntity.ok(userAuthService.validateToken(token));
     }
-
 
     @GetMapping
     public List<User> getAllUsers(){

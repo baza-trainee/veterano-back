@@ -85,7 +85,6 @@ services:
 #      - rabbitmq
 #      - apigw
 #
-#
 #  email:
 #    image: zdoryk/email:latest
 #    container_name: email

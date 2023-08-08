@@ -45,18 +45,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Remove the duplicate entry for spring-cloud-starter-netflix-eureka-client -->
-        <!-- <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency> -->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
 
         <dependency>
             <groupId>com.auth0</groupId>
@@ -75,6 +68,7 @@
             <artifactId>bucket4j-core</artifactId>
             <version>4.10.0</version>
         </dependency>
+
 
     </dependencies>
 

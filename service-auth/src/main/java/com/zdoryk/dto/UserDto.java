@@ -1,4 +1,4 @@
-package com.zdoryk.core;
+package com.zdoryk.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

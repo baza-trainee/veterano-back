@@ -2,10 +2,9 @@ package com.zdoryk.auth;
 import com.zdoryk.exceptions.IncorrectDataException;
 import com.zdoryk.exceptions.NotFoundException;
 import com.zdoryk.exceptions.ResourceExistsException;
-import com.zdoryk.core.UserDto;
-import com.zdoryk.core.UserLoginRequest;
-import com.zdoryk.core.UserRegistrationRequest;
-import com.zdoryk.exceptions.UserValidationException;
+import com.zdoryk.dto.UserDto;
+import com.zdoryk.dto.UserLoginRequest;
+import com.zdoryk.dto.UserRegistrationRequest;
 import com.zdoryk.token.ConfirmationService;
 import com.zdoryk.token.ConfirmationToken;
 import com.zdoryk.util.JWTUtil;
@@ -29,13 +28,9 @@ public class UserAuthService {
 
     public String login(UserLoginRequest userLoginRequest){
 
-        Optional<User> optionalUser = userRepository.findUserByEmail(userLoginRequest.email());
+        User user = userRepository.findUserByEmail(userLoginRequest.email())
+                .orElseThrow(() -> new NotFoundException("User does not exist"));
 
-        if(optionalUser.isEmpty()){
-            throw new NotFoundException("User not found");
-        }
-
-        User user = optionalUser.get();
         if(!user.getEnabled()){
             throw new IncorrectDataException("User with these data didn't activated account yet");
         }
@@ -47,80 +42,72 @@ public class UserAuthService {
     }
 
 
-    @Transactional()
+    @Transactional
     public String registerUser(UserRegistrationRequest userRegistrationRequest) {
+        String email = userRegistrationRequest.getEmail();
 
+        if (userRepository.existsUserByEmail(email)) {
+            throw new ResourceExistsException("User with email " + email + " already exists");
+        }
 
-        userRepository.findUserByEmail(userRegistrationRequest.getEmail())
-                .ifPresent(x -> {
-                    throw new ResourceExistsException(
-                            "user with email " +
-                            userRegistrationRequest.getEmail()
-                            + " exists");
-                });
-        User user = new User().builder()
-                .email(userRegistrationRequest.getEmail())
+        User user = User.builder()
+                .email(email)
                 .password(passwordEncoder.encode(userRegistrationRequest.getPassword()))
                 .enabled(false)
                 .userRole(UserRole.USER)
                 .build();
 
-        String email = userRegistrationRequest.getEmail();
-        String token = jwtUtil.generateToken(user.getEmail());
         userRepository.saveAndFlush(user);
+
+        String token = jwtUtil.generateToken(email);
 
         ConfirmationToken confirmationToken = new ConfirmationToken(
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
                 email,
-                userRepository.findUserByEmail(userRegistrationRequest
-                        .getEmail())
-                        .get()
-                        .getUserId()
+                user.getUserId()
         );
 
         confirmationService.saveConfirmationToken(confirmationToken);
-        confirmationService.sendEmailConfirmation(
-                email,
-                token
-        );
+        confirmationService.sendEmailConfirmation(email, token);
+
         return token;
     }
 
 
 
+
     public UserDto validateToken(String token) {
         String email = jwtUtil.validateTokenAndRetrieveClaim(token);
-        Optional<User> userOptional = userRepository.findUserByEmail(email);
-        if (userOptional.isEmpty()) {
-            throw new NotFoundException("User not found");
-        }
-        User user = userOptional.get();
-        return new UserDto().builder()
+        User user = userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+
+        return   UserDto.builder()
                 .id(user.getUserId())
                 .email(user.getEmail())
                 .build();
     }
 
+
     @Transactional
     public void confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationService
                 .getToken(token)
-                .orElseThrow(() ->
-                        new NotFoundException("token not found"));
+                .orElseThrow(() -> new NotFoundException("Token not found"));
 
-        if (confirmationToken.getConfirmedAt() != null) {
-            throw new ResourceExistsException("email already confirmed");
+        LocalDateTime confirmedAt = confirmationToken.getConfirmedAt();
+        if (confirmedAt != null) {
+            throw new ResourceExistsException("Email already confirmed");
         }
+
         LocalDateTime expiredAt = confirmationToken.getExpiresAt();
         if (expiredAt.isBefore(LocalDateTime.now())) {
-            throw new ResourceExistsException("token expired");
+            throw new ResourceExistsException("Token expired");
         }
 
         confirmationService.setConfirmedAt(token);
-        userRepository.enableAppUser(
-                confirmationToken.getEmail());
+        userRepository.enableAppUser(confirmationToken.getEmail());
     }
 
     public List<User> findAllUsers() {

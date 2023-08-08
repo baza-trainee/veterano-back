@@ -34,11 +34,10 @@ public class User {
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role")
     private UserRole userRole;
 
     @NotBlank
-    @Size(min = 1, message = "Password should not be empty")
+    @Size(min = 8, message = "Password should not be empty")
     private String password;
 
     private Boolean enabled;

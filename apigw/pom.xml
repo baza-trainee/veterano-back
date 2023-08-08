@@ -6,7 +6,7 @@
         <artifactId>veterano-backend-api</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>apigw</artifactId>
+    <artifactId>service-apigw</artifactId>
     <packaging>jar</packaging>
     <name>apigw</name>
     <url>http://maven.apache.org</url>

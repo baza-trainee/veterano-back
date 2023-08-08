@@ -1,11 +1,12 @@
 package com.zdoryk.config;
 
 import com.zdoryk.dto.UserDto;
-import jakarta.validation.Valid;
+import com.zdoryk.exception.InvalidTokenException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -28,7 +29,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
             if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                throw new RuntimeException("Missing authorization information");
+                throw new InvalidTokenException(HttpStatus.UNAUTHORIZED);
             }
             String authHeader = Objects.requireNonNull(
                             exchange
@@ -38,9 +39,8 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
                             .get(0);
 
             String[] parts = authHeader.split(" ");
-            System.out.println(Arrays.toString(parts));
             if (parts.length != 2 || !"Bearer".equals(parts[0])) {
-                throw new RuntimeException("Incorrect authorization structure");
+                throw new InvalidTokenException(HttpStatus.NO_CONTENT);
             }
 
             return webClientBuilder.build()
