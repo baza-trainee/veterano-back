@@ -15,6 +15,8 @@ public class CardWithOutLocation {
 
     private String url;
 
+    private String category;
+
     private Long imageId;
 
 }

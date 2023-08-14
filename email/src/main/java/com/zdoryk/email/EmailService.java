@@ -3,17 +3,13 @@ package com.zdoryk.email;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
-import java.util.logging.Logger;
 
 
 @RequiredArgsConstructor
@@ -27,10 +23,9 @@ public class EmailService {
     private String sender;
 
 
-
     @Async
-    public void send(String to,String link) {
-        String email = buildEmail("name",link);
+    public void sendVerificationEmail(String to, String link) {
+        String email = buildVerificationEmail("name",link);
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper =
@@ -47,7 +42,27 @@ public class EmailService {
     }
 
 
-    private String buildEmail(String name, String link) {
+    @Async
+    public void sendResetPasswordEmail(String to, String link){
+        String email = buildVerificationEmail("name",link);
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper =
+                    new MimeMessageHelper(mimeMessage, "utf-8");
+            helper.setText(email, true);
+            helper.setTo(to);
+            helper.setSubject("Reset Password");
+            helper.setFrom(sender);
+            mailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            log.error("failed to send email", e);
+            throw new IllegalStateException("failed to send email");
+        }
+    }
+
+
+
+    private String buildVerificationEmail(String name, String link) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
                 "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +

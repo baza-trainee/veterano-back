@@ -1,21 +1,29 @@
 server:
-  port: 8081
+  port: 8084
 spring:
   application:
-    name: user
+    name: card
   datasource:
     username: dev
     password: password
     url: jdbc:postgresql://postgres:5432/veterano_local_db
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
 
+config:
+  urls:
+    approve-register: http://localhost:8080/api/v1/users/auth/approve-token?token=
+
+security:
+  jwt:
+    token:
+      secret-key: 923593859385983912541253261
 
 eureka:
   client:

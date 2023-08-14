@@ -4,75 +4,70 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6d4f1a5-07ab-4e22-b7dc-069a47cab945" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apigw/src/main/java/com/zdoryk/exception/GlobalErrorAttributes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apigw/src/main/java/com/zdoryk/exception/GlobalErrorWebExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apigw/src/main/java/com/zdoryk/exception/InvalidTokenException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/config/SpringFoxConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/CardApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/core/ApiResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardSaveRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardWithImageIdDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardWithOutLocation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/ImageDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/ImageRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/LocationDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/LocationFindRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/exception/ImageFailedDecodeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/exception/ImageNotBase64Exception.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/exception/NotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/image/Image.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/image/ImageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/image/ImageRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/image/ImageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/location/Location.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/location/LocationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/location/LocationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/searcher/SearchService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/searcher/SearcherController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/utils/Base64Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-card/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/core/ApiResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/exception/NotFoundException.java" afterDir="false" />
+    <list default="true" id="e6d4f1a5-07ab-4e22-b7dc-069a47cab945" name="Changes" comment="added card service without security">
+      <change afterPath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/util/EmailResetToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apigw/src/main/resources/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/email/src/main/resources/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/core/PasswordValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/core/ValidPassword.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/resetToken/PasswordResetRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/resetToken/PasswordResetService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/resetToken/PasswordResetToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/resetToken/PasswordResetTokenRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-auth/src/main/resources/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/category/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/category/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/category/CategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardWithoutCategoryWithImageIdDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CategoryDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-card/src/main/resources/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/RabbitMQRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/RabbitMQRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/util/EmailVerificationToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/util/EmailVerificationToken.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apigw/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/apigw/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apigw/src/main/java/com/zdoryk/config/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/apigw/src/main/java/com/zdoryk/config/AuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apigw/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/apigw/src/main/resources/application-docker.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apigw/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/apigw/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/email/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email/src/main/java/com/zdoryk/email/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/email/src/main/java/com/zdoryk/email/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email/src/main/java/com/zdoryk/rabbitmq/EmailNotificationConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/email/src/main/java/com/zdoryk/rabbitmq/EmailNotificationConsumer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/AuthApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/auth/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/auth/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/auth/UserAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/auth/UserAuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/auth/UserAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/auth/UserAuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/auth/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/auth/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/core/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/core/UserLoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/dto/UserLoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/core/UserRegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/dto/UserRegistrationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/core/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/core/UserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/UserCredentialsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/UserCredentialsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/dto/UserRegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/dto/UserRegistrationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/token/ConfirmationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/confirmationToken/ConfirmationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/token/ConfirmationToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/confirmationToken/ConfirmationToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/token/TokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/confirmationToken/TokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-auth/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/resources/application-docker.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service-card.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/CardApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/CardApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/Category.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardWithImageIdDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardWithImageIdDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardWithOutLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardWithOutLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/image/ImageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/image/ImageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/location/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/location/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/location/LocationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/location/LocationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/searcher/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/searcher/SearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/searcher/SearcherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/searcher/SearcherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service-card/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application-docker.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,8 +77,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -102,6 +97,11 @@
       <MavenGeneralSettings>
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
+    </option>
+    <option name="enabledProfiles">
+      <list>
+        <option value="build-docker-image" />
+      </list>
     </option>
   </component>
   <component name="ProblemsViewState">
@@ -124,17 +124,17 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "openjdk-17",
-    "last_opened_file_path": "/Users/danilzdoryk/IdeaProjects/veterano-back",
+    "last_opened_file_path": "/Users/danilzdoryk/IdeaProjects/veterano-back/apigw/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
+    "project.structure.proportion": "0.08771932",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "spring.configuration.checksum": "f301a834f8b24ecd8ab05fda865d40fb",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "spring.configuration.checksum": "5ec14abf98058ac2eea374e0a22e9f73",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -143,17 +143,25 @@
     ]
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.zdoryk.card.core" />
       <recent name="com.zdoryk.card.utils" />
       <recent name="com.zdoryk.card.card" />
       <recent name="com.zdoryk.exception" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/apigw/src/main/resources" />
+      <recent name="$PROJECT_DIR$/eureka-server/src/main/resources" />
+      <recent name="$PROJECT_DIR$/email/src/main/resources" />
+      <recent name="$PROJECT_DIR$/service-auth/src/main/resources" />
       <recent name="$PROJECT_DIR$/service-card/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zdoryk.util" />
       <recent name="com.zdoryk.card.core" />
       <recent name="com.zdoryk.exception" />
     </key>
@@ -165,20 +173,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EmailApplication">
-    <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="service-auth" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdoryk.AuthApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.zdoryk.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.CardApplication">
     <configuration name="CardApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="service-card" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdoryk.card.CardApplication" />
@@ -207,7 +202,7 @@
       </method>
     </configuration>
     <configuration name="GateWayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="service-apigw" />
+      <module name="apigw" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdoryk.GateWayApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -221,12 +216,58 @@
       </method>
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml.apigw: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
+          <option name="services">
+            <list>
+              <option value="apigw" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.pgadmin: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="pgadmin" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="postgres" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.rabbitmq: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="rabbitmq" />
+            </list>
+          </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
@@ -235,8 +276,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.CardApplication" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Docker.docker-compose.yml.rabbitmq: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.pgadmin: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.apigw: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -250,7 +293,13 @@
       <updated>1691351149016</updated>
       <workItem from="1691351150136" duration="15744000" />
       <workItem from="1691419791443" duration="1811000" />
-      <workItem from="1691425263290" duration="29160000" />
+      <workItem from="1691425263290" duration="45717000" />
+      <workItem from="1691686922022" duration="10011000" />
+      <workItem from="1691776320983" duration="9131000" />
+      <workItem from="1692017730616" duration="3842000" />
+      <workItem from="1692035328001" duration="3491000" />
+      <workItem from="1692038830198" duration="2798000" />
+      <workItem from="1692041637297" duration="5397000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1691352505313</created>
@@ -259,7 +308,21 @@
       <option name="project" value="LOCAL" />
       <updated>1691352505313</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added card service without security">
+      <created>1691497653567</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1691497653567</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added card service without security">
+      <created>1691497666427</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1691497666427</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +330,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="added card service without security" />
+    <option name="LAST_COMMIT_MESSAGE" value="added card service without security" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

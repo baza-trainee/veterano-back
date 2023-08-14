@@ -2,7 +2,7 @@ package com.zdoryk.util;
 
 import java.io.Serializable;
 
-public record EmailVerificationToken(
+public record EmailResetToken(
         String to,
         String link
 

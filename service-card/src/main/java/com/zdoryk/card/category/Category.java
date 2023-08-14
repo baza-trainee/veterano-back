@@ -1,11 +1,11 @@
-package com.zdoryk.card.card;
+package com.zdoryk.card.category;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.zdoryk.card.category.Category;
-import com.zdoryk.card.image.Image;
-import com.zdoryk.card.location.Location;
+import com.zdoryk.card.card.Card;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CollectionId;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.List;
@@ -13,53 +13,34 @@ import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Getter
 @Setter
-@Builder
 @ToString
-@Entity(name = "Card")
-public class Card {
+@Entity(name = "category")
+public class Category {
 
     @Id
     @SequenceGenerator(
-            name = "card_id_sequence",
-            sequenceName = "card_id_sequence"
+            name = "category_id_sequence",
+            sequenceName = "category_id_sequence"
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "card_id_sequence"
+            generator = "category_id_sequence"
     )
-    @Column(name = "card_id")
-    private Long cardId;
+    @JsonIgnore
+    private Long categoryId;
 
-    private String description;
+    @Column(nullable = false)
+    private String categoryName;
 
-    private String title;
-
-    private String url;
-
-    @JsonIgnoreProperties("cardList")
-    @ManyToOne()
-    @JoinColumn(
-            name = "category",
-            nullable = false
-    )
-    private Category category;
-
-    @JsonIgnoreProperties("cardList")
-    @ManyToOne()
-    @JoinColumn(
-            name = "location_id",
-            nullable = false
-    )
-    private Location location;
-
-    @JsonIgnoreProperties("card")
+    @JsonIgnoreProperties({"location","imageList","cardList","category"})
     @OneToMany(
-            mappedBy = "card",
+            mappedBy = "category",
             fetch = FetchType.EAGER
     )
-    private List<Image> imageList;
+    private List<Card> cardList;
 
     @Override
     public final boolean equals(Object object) {
@@ -68,8 +49,8 @@ public class Card {
         Class<?> oEffectiveClass = object instanceof HibernateProxy ? ((HibernateProxy) object).getHibernateLazyInitializer().getPersistentClass() : object.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Card card = (Card) object;
-        return getCardId() != null && Objects.equals(getCardId(), card.getCardId());
+        Category category = (Category) object;
+        return getCategoryId() != null && Objects.equals(getCategoryId(), category.getCategoryId());
     }
 
     @Override
@@ -77,3 +58,5 @@ public class Card {
         return getClass().hashCode();
     }
 }
+
+

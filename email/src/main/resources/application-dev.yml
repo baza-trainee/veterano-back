@@ -1,0 +1,27 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: email
+  mail:
+    host: smtp.gmail.com
+    password: zxywkycbcpvnjokc
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    username: asusnik241201@gmail.com
+
+  rabbitmq:
+   addresses: rabbitmq:5672
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+    enabled: true

@@ -17,16 +17,6 @@ public class ImageController {
     private final ImageService imageService;
 
 
-    @PostMapping("/get")
-    public ResponseEntity<byte[]> getImageById(
-            @RequestBody
-            ImageRequest imageRequest
-    ){
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);
-        byte[] imageBytes = imageService.getImageById(imageRequest.getId());
-        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
-    }
 
 
 }

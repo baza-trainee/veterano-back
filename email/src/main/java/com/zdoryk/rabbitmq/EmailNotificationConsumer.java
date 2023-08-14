@@ -1,6 +1,7 @@
 package com.zdoryk.rabbitmq;
 
 import com.zdoryk.email.EmailService;
+import com.zdoryk.util.EmailResetToken;
 import com.zdoryk.util.EmailVerificationToken;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,15 +17,16 @@ public class EmailNotificationConsumer {
 
     @RabbitListener(queues = "spring-verification-order")
     public void consumer(EmailVerificationToken message){
-        emailService.send(
+        emailService.sendVerificationEmail(
                 message.to(),
-                message.token()
+                message.link()
         );
     }
-//    @RabbitListener(queues = "spring-order-update")
-//    public void consumer(OrderUpdateRabbitRequest orderMessageRabbitRequest){
-//        emailService.sendOrderUpdateVerificationEmail(orderMessageRabbitRequest);
-//    }
+
+    @RabbitListener(queues = "spring-reset-password")
+    public void consumer(EmailResetToken emailResetToken){
+        emailService.sendResetPasswordEmail(emailResetToken.to(), emailResetToken.link());
+    }
 
 
 
