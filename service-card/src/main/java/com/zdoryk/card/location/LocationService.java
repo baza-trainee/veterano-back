@@ -14,9 +14,7 @@ public class LocationService {
     private final LocationRepository locationRepository;
 
 
-    public Location saveLocation(Location location){
-        return locationRepository.save(location);
-    }
+    public void saveLocation(Location location){locationRepository.save(location);}
 
     public Location getLocationByCountry(String country){
         return locationRepository.getLocationByCountry(country)
@@ -28,6 +26,12 @@ public class LocationService {
     }
 
     public Optional<Location> getLocationByCountryAndCity(LocationFindRequest locationFindRequest) {
-        return locationRepository.getLocationByCountryAndCity(locationFindRequest.getCountry(), locationFindRequest.getCity());
+        return locationRepository.getLocationByCountryAndCity(
+                locationFindRequest.getCountry(),
+                locationFindRequest.getCity()
+        );
     }
+
+
+
 }

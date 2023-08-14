@@ -28,31 +28,40 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
-            if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                throw new InvalidTokenException(HttpStatus.UNAUTHORIZED);
-            }
-            String authHeader = Objects.requireNonNull(
-                            exchange
-                            .getRequest()
-                            .getHeaders()
-                            .get(HttpHeaders.AUTHORIZATION))
-                            .get(0);
 
-            String[] parts = authHeader.split(" ");
-            if (parts.length != 2 || !"Bearer".equals(parts[0])) {
-                throw new InvalidTokenException(HttpStatus.NO_CONTENT);
-            }
+            String path = exchange.getRequest().getPath().toString();
+            if (!path.startsWith("/api/v1/search")) {
+                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+                    throw new InvalidTokenException(HttpStatus.UNAUTHORIZED);
+                }
+                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+                    throw new InvalidTokenException(HttpStatus.UNAUTHORIZED);
+                }
+                String authHeader = Objects.requireNonNull(
+                                exchange
+                                .getRequest()
+                                .getHeaders()
+                                .get(HttpHeaders.AUTHORIZATION))
+                                .get(0);
 
-            return webClientBuilder.build()
-                    .post()
-                    .uri(validateUrl + parts[1])
-                    .retrieve().bodyToMono(UserDto.class)
-                    .map(userDto -> {
-                        exchange.getRequest()
-                                .mutate()
-                                .header("X-auth-user-id", String.valueOf(userDto.getId()));
-                        return exchange;
-                    }).flatMap(chain::filter);
+
+                String[] parts = authHeader.split(" ");
+                if (parts.length != 2 || !"Bearer".equals(parts[0])) {
+                    throw new InvalidTokenException(HttpStatus.NO_CONTENT);
+                }
+
+                return webClientBuilder.build()
+                        .post()
+                        .uri(validateUrl + parts[1])
+                        .retrieve().bodyToMono(UserDto.class)
+                        .map(userDto -> {
+                            exchange.getRequest()
+                                    .mutate()
+                                    .header("X-auth-user-id", String.valueOf(userDto.getId()));
+                            return exchange;
+                        }).flatMap(chain::filter);
+            }
+            return chain.filter(exchange);
         };
     }
 

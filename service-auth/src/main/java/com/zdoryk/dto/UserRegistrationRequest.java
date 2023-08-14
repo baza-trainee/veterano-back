@@ -1,6 +1,7 @@
 package com.zdoryk.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.zdoryk.core.ValidPassword;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.ToString;
@@ -21,6 +22,7 @@ public class UserRegistrationRequest {
                 " uppercase and lowercase letters."
         )
         @NotNull
+        @ValidPassword
         @JsonProperty("password") String password;
 
 }

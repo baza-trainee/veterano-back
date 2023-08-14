@@ -5,8 +5,8 @@ import com.zdoryk.exceptions.ResourceExistsException;
 import com.zdoryk.dto.UserDto;
 import com.zdoryk.dto.UserLoginRequest;
 import com.zdoryk.dto.UserRegistrationRequest;
-import com.zdoryk.token.ConfirmationService;
-import com.zdoryk.token.ConfirmationToken;
+import com.zdoryk.confirmationToken.ConfirmationService;
+import com.zdoryk.confirmationToken.ConfirmationToken;
 import com.zdoryk.util.JWTUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -57,7 +56,7 @@ public class UserAuthService {
                 .userRole(UserRole.USER)
                 .build();
 
-        userRepository.saveAndFlush(user);
+        userRepository.save(user);
 
         String token = jwtUtil.generateToken(email);
 
@@ -112,5 +111,10 @@ public class UserAuthService {
 
     public List<User> findAllUsers() {
         return userRepository.findAll();
+    }
+
+    public void updateUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
     }
 }

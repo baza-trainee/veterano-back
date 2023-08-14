@@ -1,4 +1,4 @@
-package com.zdoryk.token;
+package com.zdoryk.confirmationToken;
 
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;

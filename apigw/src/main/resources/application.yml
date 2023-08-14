@@ -5,6 +5,7 @@ management:
   endpoint.gateway.enabled: true
   endpoints.web.exposure.include: gateway
 
+
 spring:
   application:
     name: api-gateway
@@ -37,7 +38,9 @@ spring:
         - id: card
           uri: lb://card
           predicates:
-            - Path=/api/v1/card/**
+            - Path=/api/v1/**
+          filters:
+#            - name: AuthFilter
 
 
 config:
@@ -51,3 +54,9 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
+

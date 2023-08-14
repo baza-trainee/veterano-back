@@ -36,21 +36,4 @@ public class CardController {
         return cardService.getAllCards();
     }
 
-
-
-
-//    @PostMapping("/image")
-//    public ResponseEntity<byte[]> getImageFromBase64(@RequestBody String base64Content) {
-//        try {
-//            byte[] imageBytes = Base64.getDecoder().decode(base64Content);
-//
-//            // You may want to validate the image data here before returning it.
-//
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.setContentType(MediaType.IMAGE_JPEG); // Change this to the appropriate image type if needed
-//            return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
-//        } catch (IllegalArgumentException e) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//    }
 }

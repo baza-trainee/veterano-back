@@ -1,12 +1,11 @@
 package com.zdoryk.card.dto;
 
-import com.zdoryk.card.location.Location;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CardWithImageIdDto {
+public class CardWithoutCategoryWithImageIdDto {
 
     private String description;
 
@@ -17,7 +16,5 @@ public class CardWithImageIdDto {
     private Long imageId;
 
     private LocationDTO location;
-
-    private String category;
 
 }

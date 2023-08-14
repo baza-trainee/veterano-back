@@ -3,9 +3,10 @@ services:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER: zdoryk
+      POSTGRES_USER: dev
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
+      POSTGRES_DB: veterano_local_db
     volumes:
       - postgres:/data/postgres
     ports:
@@ -36,69 +37,85 @@ services:
     networks:
       - spring
 
-#  eureka-server:
-#    image: zdoryk/eureka-server:latest
-#    container_name: eureka-server
-#    ports:
-#      - "8761:8761"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    networks:
-#      - spring
-#  apigw:
-#    image: zdoryk/apigw:latest
-#    container_name: apigw
-#    ports:
-#      - "8080:8080"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    networks:
-#      - spring
-#    depends_on:
-#      - eureka-server
-#  user:
-#    image: zdoryk/user:latest
-#    container_name: user
-#    ports:
-#      - "8081:8081"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    networks:
-#      - spring
-#      - postgres
-#    depends_on:
-#      - postgres
-#      - apigw
-#
-#  auth:
-#    image: zdoryk/service-auth:latest
-#    container_name: auth
-#    ports:
-#      - "8082:8082"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    networks:
-#      - spring
-#      - postgres
-#    depends_on:
-#      - postgres
-#      - rabbitmq
-#      - apigw
-#
-#  email:
-#    image: zdoryk/email:latest
-#    container_name: email
-#    ports:
-#      - "8086:8086"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    networks:
-#      - spring
-#      - postgres
-#    depends_on:
-#      - postgres
-#      - rabbitmq
-#      - apigw
+  eureka-server:
+    image: zdoryk/eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - spring
+  apigw:
+    image: zdoryk/apigw:latest
+    container_name: apigw
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - spring
+    depends_on:
+      - eureka-server
+
+  user:
+    image: zdoryk/user:latest
+    container_name: user
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - apigw
+
+  auth:
+    image: zdoryk/service-auth:latest
+    container_name: auth
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - rabbitmq
+      - apigw
+
+  email:
+    image: zdoryk/email:latest
+    container_name: email
+    ports:
+      - "8086:8086"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - rabbitmq
+      - apigw
+
+  card:
+    image: zdoryk/service-card:latest
+    container_name: card
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - rabbitmq
+      - apigw
 
 
 networks:

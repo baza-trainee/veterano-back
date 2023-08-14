@@ -1,4 +1,4 @@
-package com.zdoryk.token;
+package com.zdoryk.confirmationToken;
 
 import jakarta.persistence.*;
 import lombok.Getter;
