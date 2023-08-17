@@ -7,7 +7,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>eureka-server</artifactId>
-    <name>Archetype - eureka-server</name>
+    <name>eureka-server</name>
     <url>http://maven.apache.org</url>
     <packaging>jar</packaging>
 

@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ampq/ampq.iml" filepath="$PROJECT_DIR$/ampq/ampq.iml" />
-      <module fileurl="file://$PROJECT_DIR$/email/email.iml" filepath="$PROJECT_DIR$/email/email.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apigw/apigw.iml" filepath="$PROJECT_DIR$/apigw/apigw.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rabbitMQ/rabbitMQ.iml" filepath="$PROJECT_DIR$/rabbitMQ/rabbitMQ.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-auth/service-auth.iml" filepath="$PROJECT_DIR$/service-auth/service-auth.iml" />
-      <module fileurl="file://$PROJECT_DIR$/service-card.iml" filepath="$PROJECT_DIR$/service-card.iml" />
-      <module fileurl="file://$PROJECT_DIR$/user/user.iml" filepath="$PROJECT_DIR$/user/user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service-data.iml" filepath="$PROJECT_DIR$/service-data.iml" />
     </modules>
   </component>
 </project>

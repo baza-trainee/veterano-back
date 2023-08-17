@@ -7,14 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ampq" />
         <module name="apigw" />
-        <module name="service-card" />
+        <module name="service-user" />
+        <module name="service-data" />
         <module name="eureka-server" />
         <module name="service-auth" />
-        <module name="user" />
-        <module name="email" />
+        <module name="rabbitMQ" />
+        <module name="service-email" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ampq" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

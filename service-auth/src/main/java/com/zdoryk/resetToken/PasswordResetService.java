@@ -7,7 +7,6 @@ import com.zdoryk.auth.UserRepository;
 import com.zdoryk.exceptions.IncorrectDataException;
 import com.zdoryk.exceptions.NotFoundException;
 import com.zdoryk.util.EmailResetToken;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

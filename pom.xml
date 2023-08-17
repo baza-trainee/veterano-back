@@ -11,13 +11,13 @@
     <name>veterano-backend-api</name>
     <description>veterano-backend-api</description>
     <modules>
-        <module>user</module>
+        <module>service-user</module>
         <module>apigw</module>
         <module>eureka-server</module>
         <module>service-auth</module>
-        <module>email</module>
-        <module>ampq</module>
-        <module>service-card</module>
+        <module>service-email</module>
+        <module>rabbitMQ</module>
+        <module>service-data</module>
     </modules>
     <packaging>pom</packaging>
 

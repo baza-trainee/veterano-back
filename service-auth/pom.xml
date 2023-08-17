@@ -16,7 +16,6 @@
     </properties>
 
     <dependencies>
-        <!-- Other dependencies... -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -26,7 +25,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Remove one of the duplicate entries for spring-cloud-starter-netflix-eureka-client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -59,7 +57,7 @@
 
         <dependency>
             <groupId>com.zdoryk</groupId>
-            <artifactId>ampq</artifactId>
+            <artifactId>rabbitMQ</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

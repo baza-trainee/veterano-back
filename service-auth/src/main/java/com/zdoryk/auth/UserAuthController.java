@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
@@ -26,9 +25,7 @@ public class UserAuthController extends GenericController {
 
     private final UserAuthService userAuthService;
     private final PasswordResetService passwordResetService;
-//    private final Bucket bucket = Bucket4j.builder()
-//            .addLimit(Bandwidth.classic(5, Refill.intervally(5, Duration.ofMinutes(1))))
-//            .build();
+
 
     @PostMapping("/login")
     public ResponseEntity<APICustomResponse> login(
@@ -36,13 +33,11 @@ public class UserAuthController extends GenericController {
             UserLoginRequest userLoginRequest){
 
 
-//        if(bucket.tryConsume(1L)) {
             return createResponse(
                     Map.of("user", userAuthService.login(userLoginRequest)),
                     "user",
                     HttpStatus.OK
             );
-//        }
 //
 //        throw new RateLimitExceededException("The speed limit has been exceeded." +
 //                " Please try again later.");
@@ -77,11 +72,11 @@ public class UserAuthController extends GenericController {
     }
 
 
-    @PostMapping("/password-reset-request")
+    @GetMapping("/password-reset-request")
     public ResponseEntity<APICustomResponse> requestResetPassword(
-            @RequestBody PasswordResetRequest request){
+            @RequestParam("email") String email){
 
-        passwordResetService.generatePasswordResetToken(request.email());
+        passwordResetService.generatePasswordResetToken(email);
         return createResponse(
                 Map.of("USER","email"),
                 "success",

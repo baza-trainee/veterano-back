@@ -1,0 +1,37 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: data
+  datasource:
+    username: dev
+    password: password
+    url: jdbc:postgresql://postgres:5432/veterano_local_db
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+  rabbitmq:
+    addresses: rabbitmq:5672
+
+
+security:
+  jwt:
+    token:
+      secret-key: 923593859385983912541253261
+
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+    enabled: true

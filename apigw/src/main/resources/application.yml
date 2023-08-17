@@ -35,8 +35,8 @@ spring:
           filters:
             - name: AuthFilter
 
-        - id: card
-          uri: lb://card
+        - id: data
+          uri: lb://data
           predicates:
             - Path=/api/v1/**
           filters:

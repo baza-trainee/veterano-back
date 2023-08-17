@@ -1,51 +1,11 @@
 manual documentation:
 
-1. Завантажити Docker - https://www.docker.com/products/docker-desktop/
-2. Також скачайте файл docker-compose.yml та помістіть його в директорію, можно на робочий стіл
-3. Після встановлення заходимо в директорію файлу та прописуємо docker-compose up -d
-                                                (Linux або Macos, для windows гугліть, думаю так само)
+1. SWAGGER-UIS:
+       user-credentials: http://45.94.157.117:8081/swagger-ui/index.html#/
+       auth: http://45.94.157.117:8082/swagger-ui/index.html#/
+       data,locations,categories: http://45.94.157.117:8084/swagger-ui/index.html#/
 
-4. Після того як docker запустився маєте swagger-ui, лінки:
-         user-credentials(законсервовано): http://localhost:8081/swagger-ui/index.html#/
-         user-auth(законсервовано): http://localhost:8082/swagger-ui/index.html#/
-         service-card(картки): http://localhost:8084/swagger-ui/index.html#/
+2. PG-ADMIN:
+        http://45.94.157.117:5050/browser/
 
-5. В 4 пункті розписані всі endpoints для конекта з сервером, Зараз тестую технологію Cloud Gateway,
-        тому переходьте на всі endpoints: http://localhost:8080/** (лінк який вам потрібно)
-        воно автоматично направить вас на потрібний endpoint
-
-
-6. Лінк на pgadmin: http://localhost:5050/browser/
-   Якщо ви заходите перший раз: створюєте сервер за скріншотами(прикріплено)
-   Логін: dev
-   Пароль: password
-   Відразу ви будете бачити, що створена дата база: veterano_local_db
-   Там вже залежить від того, як ви знаєте pgAdmin4 та PosgreSQL
-
-   Лінк на RabbitMq: http://localhost:15672/#/queues
-   Логін та пароль: guest guest
-   Він створений для черги між сервісу реєстрації та email
-   Якщо не розумієете, то нічого страшного, на тести не впливай
-
-
-7. Наразі security є тільки в User-credentials аби додати до юзера ПІБ, номер телефону
-    Після того як зареєструвались та залогінились маєте jwt-token
-    З цим jwt token можете змінювати  або додавати для юзера поля
-    (З любим jwt можете міняти любих юзерів)
-
-8. Також дивіться на порти, які у вас зайняті, тому що докер забирає собі порти,
-                            наприклад якщо порт для postgreSQL зайнятий, він вибʼє помилку
-                            для macos команда яка шукає зайнятий порт: sudo lsof -i :5432
-                            Потім: kill ваш порт
-                            Для віндовса легко гуглиться
-
-
-
-ОНОВЛЕННЯ:
-
-1. З часом я буду посилати повідомлення, що я обновив сервіси, вам потрібно буде прописати такі дії:
-docker rm -f $(docker ps -aq)
-docker rmi -f $(docker images -q)
-
-Він удалить всі старі сервіси та з новим docker-compose up -d загрузе нову версію
-
+3. To all Endpoints you go thru : http://45.94.157.117:8080/api/v1/**

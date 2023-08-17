@@ -28,6 +28,7 @@ services:
     networks:
       - postgres
     restart: unless-stopped
+
   rabbitmq:
     image: rabbitmq:3.9.11-management-alpine
     container_name: rabbitmq
@@ -70,6 +71,7 @@ services:
       - postgres
     depends_on:
       - postgres
+      - eureka-server
       - apigw
 
   auth:
@@ -85,10 +87,11 @@ services:
     depends_on:
       - postgres
       - rabbitmq
+      - eureka-server
       - apigw
 
   email:
-    image: zdoryk/email:latest
+    image: zdoryk/service-email:latest
     container_name: email
     ports:
       - "8086:8086"
@@ -100,11 +103,12 @@ services:
     depends_on:
       - postgres
       - rabbitmq
+      - eureka-server
       - apigw
 
   card:
-    image: zdoryk/service-card:latest
-    container_name: card
+    image: zdoryk/service-data:latest
+    container_name: data
     ports:
       - "8084:8084"
     environment:
@@ -115,6 +119,7 @@ services:
     depends_on:
       - postgres
       - rabbitmq
+      - eureka-server
       - apigw
 
 
