@@ -4,150 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6d4f1a5-07ab-4e22-b7dc-069a47cab945" name="Changes" comment="updated searcher, location, category&#10;14.08 version">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/config/notification/SendSubscribeVerificationEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/config/notification/SendUpdatesForSubscribersEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/util/CardToSendEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/util/ConsumerDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/util/SubscriptionUpdateMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/FeedbackDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/exception/NotValidEmailException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/exception/ResourceExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/feedback/Feedback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/feedback/FeedbackController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/feedback/FeedbackRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/feedback/FeedbackService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/image/ImageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/subscription/Subscription.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/subscription/SubscriptionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/subscription/SubscriptionRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/subscription/SubscriptionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/utils/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/src/main/java/com/zdoryk/EmailApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/src/main/java/com/zdoryk/email/Email.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/src/main/java/com/zdoryk/email/EmailDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/src/main/java/com/zdoryk/email/EmailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/src/main/java/com/zdoryk/exceptions/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/src/main/java/com/zdoryk/rabbitmq/EmailNotificationConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/src/main/resources/application-dev.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/src/main/resources/application-docker.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-email/src/main/resources/banner.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/UserApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/core/APICustomResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/core/ApiResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/core/GenericController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/core/ResourceExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/core/UserRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/exception/NotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/user/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/user/UserCredentialsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/user/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/user/UserRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/java/com/zdoryk/user/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/resources/application-dev.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/resources/application-docker.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-user/src/main/resources/banner.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ampq/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitMQ/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ampq/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitMQ/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/RabbitMQRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/RabbitMQRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/config/SendMessageVerificationRabbitQueueConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/config/password/SendMessageVerificationRabbitQueueConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/config/SendResetPasswordRabbitQueueConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/config/password/SendResetPasswordRabbitQueueConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/core/SendMessageVerificationRabbitRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/core/SendMessageVerificationRabbitRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/core/SendResetPasswordRabbitRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/core/SendResetPasswordRabbitRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/util/EmailResetToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/util/EmailResetToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ampq/src/main/java/com/zdoryk/util/EmailVerificationToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/rabbitMQ/src/main/java/com/zdoryk/util/EmailVerificationToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apigw/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/apigw/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apigw/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/apigw/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/src/main/java/com/zdoryk/EmailApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/src/main/java/com/zdoryk/email/Email.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/src/main/java/com/zdoryk/email/EmailDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/src/main/java/com/zdoryk/email/EmailService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/src/main/java/com/zdoryk/exceptions/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/src/main/java/com/zdoryk/rabbitmq/EmailNotificationConsumer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/src/main/resources/application-dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/src/main/resources/application-docker.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/email/src/main/resources/banner.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/auth/UserAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/auth/UserAuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/resetToken/PasswordResetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/java/com/zdoryk/resetToken/PasswordResetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-auth/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service-auth/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service-data.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/CardApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/DataApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/CardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/CardRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/card/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/CardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/category/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/category/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/category/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/category/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/category/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/category/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/core/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/core/ApiResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardSaveRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardSaveRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardWithImageIdDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardWithImageIdDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardWithOutLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardWithOutLocation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CardWithoutCategoryWithImageIdDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardWithoutCategoryWithImageIdDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/CategoryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CategoryDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/ImageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/ImageDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/ImageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/ImageRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/LocationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/LocationDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/dto/LocationFindRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/LocationFindRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/exception/ImageFailedDecodeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/exception/ImageFailedDecodeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/exception/ImageNotBase64Exception.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/exception/ImageNotBase64Exception.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/exception/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/exception/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/image/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/image/Image.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/image/ImageController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/image/ImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/image/ImageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/image/ImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/image/ImageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/location/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/location/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/location/LocationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/location/LocationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/location/LocationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/location/LocationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/searcher/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/searcher/SearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/searcher/SearcherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/searcher/SearcherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/utils/Base64Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/utils/Base64Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-card/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/UserApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/core/APICustomResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/core/ApiResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/core/GenericController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/core/ResourceExistsException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/core/UserRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/exception/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/exception/NotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/UserCredentialsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/UserRole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/zdoryk/user/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-docker.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/banner.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="e6d4f1a5-07ab-4e22-b7dc-069a47cab945" name="Changes" comment="added notifications about new projects, Scheduling, pagination&#10;17.08 version" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -388,7 +245,7 @@
       <workItem from="1692203481275" duration="8339000" />
       <workItem from="1692219035404" duration="10181000" />
       <workItem from="1692297668132" duration="4634000" />
-      <workItem from="1692302937848" duration="8938000" />
+      <workItem from="1692302937848" duration="9251000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1691352505313</created>
@@ -425,7 +282,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692047238273</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added notifications about new projects, Scheduling, pagination&#10;17.08 version">
+      <created>1692312509653</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692312509653</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +299,8 @@
     <MESSAGE value="test" />
     <MESSAGE value="added card service without security" />
     <MESSAGE value="updated searcher, location, category&#10;14.08 version" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated searcher, location, category&#10;14.08 version" />
+    <MESSAGE value="added notifications about new projects, Scheduling, pagination&#10;17.08 version" />
+    <option name="LAST_COMMIT_MESSAGE" value="added notifications about new projects, Scheduling, pagination&#10;17.08 version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
