@@ -1,0 +1,3 @@
+.service-email/src/main/resources/application.yml
+.service-email/src/main/resources/application-dev.yml
+.service-email/src/main/resources/application-docker.yml

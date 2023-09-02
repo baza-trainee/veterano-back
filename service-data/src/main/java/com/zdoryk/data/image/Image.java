@@ -1,5 +1,6 @@
 package com.zdoryk.data.image;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.zdoryk.data.card.Card;
 import jakarta.persistence.*;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Builder
-@Entity(name = "image")
+@Entity(name = "images")
 public class Image {
 
     @Id
@@ -31,10 +32,10 @@ public class Image {
 
 
     @JsonIgnoreProperties({"imageList","data"})
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(
-            name = "card_id",
-            nullable = false
+            name = "card_id"
     )
     private Card card;
 

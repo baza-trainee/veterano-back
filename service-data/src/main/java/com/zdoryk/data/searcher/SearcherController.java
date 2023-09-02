@@ -1,18 +1,23 @@
 package com.zdoryk.data.searcher;
 
 import com.zdoryk.data.dto.*;
+import com.zdoryk.data.image.Image;
 import com.zdoryk.data.image.ImageService;
+import com.zdoryk.data.info.InfoService;
+import com.zdoryk.data.info.contact.Contact;
+import com.zdoryk.data.info.partner.Partner;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayInputStream;
+import java.util.LinkedList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -22,23 +27,63 @@ public class SearcherController {
 
     private final SearchService searchService;
     private final ImageService imageService;
+    private final InfoService infoService;
 
-    @Operation(description = "Get all Cards")
+
+    @Operation(description = "Find enabled Cards by Queries parameters" +
+            "all parameters are optional" +
+            "if query is empty = get all cards "+
+            "default page = 1, size = 10 "+
+            "if you want to get by Location, please provide country and city "+
+            "else your location will set to null")
     @GetMapping("card")
-    public ResponseEntity<List<CardWithImageIdDto>> getAllCards(
-            @RequestParam(value = "page",defaultValue = "0") int page,
-            @RequestParam(value = "size",defaultValue = "10") int size
+    public ResponseEntity<CardsPagination> getCardsByQueue(
+
+            @RequestParam(
+                    value = "q",
+                    required = false,
+                    defaultValue = ""
+            )
+            String queue,
+            @RequestParam(
+                    value = "country",
+                    required = false,
+                    defaultValue = ""
+            ) LinkedList<String> countries,
+            @RequestParam(
+                    value = "city",
+                    required = false,
+                    defaultValue = ""
+            ) LinkedList<String> cities,
+            @RequestParam(
+                    value = "category",
+                    required = false
+            ) List<String> categories,
+            @RequestParam(
+                    value = "page",
+                    defaultValue = "1"
+            ) Integer page,
+            @RequestParam(
+                    value = "size",
+                    defaultValue = "10"
+            ) Integer size
+
     ){
-        return ResponseEntity.ok(searchService.getAllCards(page,size));
+        return ResponseEntity.ok(searchService.findCardByAllQueries(
+                queue,
+                countries,
+                cities,
+                categories,
+                page,
+                size
+        ));
     }
 
-    @Operation(description = "Get Card by Location")
-    @GetMapping("card/location")
-    private ResponseEntity<List<CardWithOutLocation>> getCardsByLocation(
-            @RequestParam("country") String country,
-            @RequestParam("city") String city
+    @GetMapping("card/get")
+    public ResponseEntity<CardDTO> getCardById(
+            @RequestParam("id") Long id
     ){
-        return ResponseEntity.ok(searchService.findByLocation(country,city));
+        return ResponseEntity.ok(searchService.findCardById(id));
     }
 
     @Operation(description = "get image to the data by image id")
@@ -50,33 +95,33 @@ public class SearcherController {
         return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
     }
 
-    @Operation(description = "Get cards by category")
-    @GetMapping("card/category")
-    private ResponseEntity<List<CardWithoutCategoryWithImageIdDto>> getCardsByCategory(
-            @RequestParam("category") String category
-    ){
-        return ResponseEntity.ok(searchService.findCardsByCategoryName(category));
-    }
-    @Operation(description = "Get Card by category and Location")
-    @GetMapping("card/filter")
-    private ResponseEntity<List<CardDTO>> getCardsByCategoryAndLocation(
-            @RequestParam("category") String category,
-            @RequestParam("country") String country,
-            @RequestParam("city") String city
-    ){
-        return ResponseEntity.ok(searchService.findCardsByCategoryAndLocation(
-                category,
-                country,
-                city
-        ));
-    }
-
     @Operation(description = "Get all Categories")
-    @GetMapping("category")
+    @GetMapping("all-categories")
     public ResponseEntity<List<CategoryDto>> getAllCategories(){
         return ResponseEntity.ok(searchService.getAllCategories());
     }
 
+    @GetMapping("all-countries")
+    public ResponseEntity<List<LocationDTO>> getAllCountries(){
+        return ResponseEntity.ok(searchService.getAllCounties());
+    }
 
+    @GetMapping("all-partners")
+    public ResponseEntity<PartnersPagination> getAllPartners(
+            @RequestParam(
+                    value = "page",
+                    defaultValue = "1"
+            ) Integer page,
+            @RequestParam(
+                    value = "size",
+                    defaultValue = "10"
+            ) Integer size
+    ){
+        return ResponseEntity.ok(searchService.getAllPartners(page,size));
+    }
 
+    @GetMapping("all-contacts")
+    public ResponseEntity<Contact> getContact(){
+        return ResponseEntity.ok(infoService.getContact());
+    }
 }

@@ -1,46 +1,42 @@
-package com.zdoryk.card.category;
+package com.zdoryk.data.url;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.zdoryk.card.card.Card;
+import com.zdoryk.data.card.Card;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CollectionId;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Getter
 @Setter
 @ToString
-@Entity(name = "category")
-public class Category {
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Entity
+public class Url implements Serializable {
+
 
     @Id
-    @SequenceGenerator(
-            name = "category_id_sequence",
-            sequenceName = "category_id_sequence"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "category_id_sequence"
-    )
-    @JsonIgnore
-    private Long categoryId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(nullable = false)
-    private String categoryName;
+    private String url;
 
-    @JsonIgnoreProperties({"location","imageList","cardList","category"})
-    @OneToMany(
-            mappedBy = "category",
-            fetch = FetchType.EAGER
-    )
-    private List<Card> cardList;
+    private Long visitors;
+
+
+    @OneToOne(targetEntity = Card.class)
+    @JsonIgnore
+    @JoinColumn(name = "card_id")
+    private Card card;
+
 
     @Override
     public final boolean equals(Object object) {
@@ -49,8 +45,8 @@ public class Category {
         Class<?> oEffectiveClass = object instanceof HibernateProxy ? ((HibernateProxy) object).getHibernateLazyInitializer().getPersistentClass() : object.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Category category = (Category) object;
-        return getCategoryId() != null && Objects.equals(getCategoryId(), category.getCategoryId());
+        Url url = (Url) object;
+        return getId() != null && Objects.equals(getId(), url.getId());
     }
 
     @Override
@@ -58,5 +54,3 @@ public class Category {
         return getClass().hashCode();
     }
 }
-
-

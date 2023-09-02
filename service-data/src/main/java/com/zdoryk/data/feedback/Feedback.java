@@ -32,8 +32,11 @@ public class Feedback {
     private String name;
 
     @Email
+    @Column(length = 300)
+    @Size(min = 1,max = 300,message = "email should be between 1 and 300 symbols")
     private String email;
 
+    @Column(length = 300)
     private String message;
 
 }

@@ -4,7 +4,66 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6d4f1a5-07ab-4e22-b7dc-069a47cab945" name="Changes" comment="added notifications about new projects, Scheduling, pagination&#10;17.08 version" />
+    <list default="true" id="e6d4f1a5-07ab-4e22-b7dc-069a47cab945" name="Changes" comment="added notifications about new projects, Scheduling, pagination&#10;17.08 version">
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/core/NoHtmlTags.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/core/NoHtmlTagsValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/core/NoSQLInjection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/core/SQLInjectionValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardsPagination.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/ContactDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/PartnerDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/PartnersPagination.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/exception/NotValidFieldException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/info/InfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/info/InfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/info/contact/Contact.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/info/contact/ContactRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/info/partner/Partner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/info/partner/PartnerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/mappers/PartnerMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/url/UrlController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/url/UrlRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/url/UrlService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/category/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/url/Url.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/category/CategoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-card/src/main/java/com/zdoryk/card/category/CategoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/CardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/CardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/CardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/card/CardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/category/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/category/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/category/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/category/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardSaveRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardSaveRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardWithImageIdDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardWithOutLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/UpdateCardDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CardWithoutCategoryWithImageIdDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CategoryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/CategoryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/FeedbackDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/FeedbackDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/ImageDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/ImageRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/LocationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/LocationDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/dto/LocationFindRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/exception/NotValidEmailException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/feedback/Feedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/feedback/Feedback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/feedback/FeedbackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/feedback/FeedbackService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/image/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/image/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/image/ImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/image/ImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/location/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/location/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/location/LocationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/location/LocationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/searcher/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/searcher/SearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/searcher/SearcherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/searcher/SearcherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/subscription/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/subscription/Subscription.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/subscription/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/subscription/SubscriptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/subscription/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/subscription/SubscriptionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/utils/Base64Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/utils/Base64Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-email/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/service-email/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +79,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JpbToolWindowState">
@@ -41,60 +105,65 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2TcnHVRtDVOyYXUYm3nqcpNjavc" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/danilzdoryk/IdeaProjects/veterano-back/apigw/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.08771932&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;302c9cb9680d4ef0bc28dced3879398e&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "mapStruct",
+    "ignore.preview.features.used": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-17",
+    "last_opened_file_path": "/Users/danilzdoryk/IdeaProjects/veterano-back/service-data/src/main/java/com/zdoryk/data/core",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.08771932",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pathVariables",
+    "spring.configuration.checksum": "302c9cb9680d4ef0bc28dced3879398e",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.zdoryk.data.mappers" />
       <recent name="com.zdoryk.card.core" />
       <recent name="com.zdoryk.card.utils" />
       <recent name="com.zdoryk.card.card" />
       <recent name="com.zdoryk.exception" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/core" />
+      <recent name="$PROJECT_DIR$/service-data/src/main/resources" />
+      <recent name="$PROJECT_DIR$/service-email/src/main/resources" />
       <recent name="$PROJECT_DIR$/apigw/src/main/resources" />
       <recent name="$PROJECT_DIR$/eureka-server/src/main/resources" />
-      <recent name="$PROJECT_DIR$/email/src/main/resources" />
-      <recent name="$PROJECT_DIR$/service-auth/src/main/resources" />
-      <recent name="$PROJECT_DIR$/service-card/src/main/resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service-data/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.zdoryk.config.notification" />
@@ -111,7 +180,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EmailApplication">
+  <component name="RunManager" selected="Spring Boot.DataApplication">
     <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="service-auth" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdoryk.AuthApplication" />
@@ -146,6 +215,7 @@
       </method>
     </configuration>
     <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-17" />
       <module name="eureka-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdoryk.EurekaServerApplication" />
       <method v="2">
@@ -214,10 +284,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.DataApplication" />
-        <item itemvalue="Docker.docker-compose.yml.rabbitmq: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.pgadmin: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
         <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Docker.docker-compose.yml.rabbitmq: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.pgadmin: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -246,6 +316,20 @@
       <workItem from="1692219035404" duration="10181000" />
       <workItem from="1692297668132" duration="4634000" />
       <workItem from="1692302937848" duration="9251000" />
+      <workItem from="1692313148333" duration="240000" />
+      <workItem from="1692349378454" duration="16584000" />
+      <workItem from="1692552170460" duration="11352000" />
+      <workItem from="1692614339896" duration="271000" />
+      <workItem from="1692614699964" duration="85559000" />
+      <workItem from="1693137677073" duration="346000" />
+      <workItem from="1693138041348" duration="365000" />
+      <workItem from="1693138460183" duration="12615000" />
+      <workItem from="1693166870524" duration="801000" />
+      <workItem from="1693168342508" duration="717000" />
+      <workItem from="1693226925088" duration="9261000" />
+      <workItem from="1693416193300" duration="14843000" />
+      <workItem from="1693606288852" duration="424000" />
+      <workItem from="1693606724814" duration="6542000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1691352505313</created>
@@ -295,6 +379,29 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="mapStruct" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="added card service without security" />
@@ -309,6 +416,11 @@
           <properties class="java.lang.IllegalStateException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service-data/src/main/java/com/zdoryk/data/image/Image.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

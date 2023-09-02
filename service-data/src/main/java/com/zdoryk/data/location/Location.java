@@ -31,16 +31,10 @@ public class Location {
     @JsonIgnore
     private Long locationId;
 
-    @Column(
-            unique = true,
-            nullable = false
-    )
+    @Column(nullable = false)
     private String country;
 
-    @Column(
-            unique = true,
-            nullable = false
-    )
+    @Column(nullable = false)
     private String city;
 
     @JsonIgnoreProperties({"location","imageList","cardList"})

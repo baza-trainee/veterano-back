@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface CardRepository extends JpaRepository<Card,Long> {
 
-    List<Card> findByCategoryAndLocation(Category category, Location location);
-
     List<Card> findCardByIsEnabledFalse();
+    List<Card> findCardByIsEnabledTrue();
 }

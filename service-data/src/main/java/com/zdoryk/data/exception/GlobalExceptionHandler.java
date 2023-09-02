@@ -40,13 +40,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
-//    @ExceptionHandler(RuntimeException.class)
-//    public ResponseEntity<Map<String, String>> handleServerError(RuntimeException ex) {
-//        Map<String, String> errors = new HashMap<>();
-//        String errorMessage = "We are experiencing temporary server issues. Please try again later.";
-//        errors.put("error",errorMessage);
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errors);
-//    }
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, String>> handleServerError(RuntimeException ex) {
+        Map<String, String> errors = new HashMap<>();
+        String errorMessage = "We are experiencing temporary server issues. Please try again later.";
+        errors.put("error",errorMessage + " " + ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errors);
+    }
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<Map<String, String>> handleNotFoundError(NotFoundException ex) {
@@ -56,8 +56,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
     }
 
-    @ExceptionHandler(NotValidEmailException.class)
-    public ResponseEntity<Map<String, String>> handleNotValidException(NotValidEmailException ex) {
+    @ExceptionHandler(NotValidFieldException.class)
+    public ResponseEntity<Map<String, String>> handleNotValidException(NotValidFieldException ex) {
         Map<String, String> errors = new HashMap<>();
         String errorMessage = ex.getMessage();
         errors.put("error",errorMessage);

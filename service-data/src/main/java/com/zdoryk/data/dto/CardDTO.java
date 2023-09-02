@@ -4,28 +4,22 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
 
-@AllArgsConstructor
-@Data
-public class CardDTO {
+public record CardDTO(
 
-    private String description;
-
-    private String title;
-
-    private String url;
-
-    private String category;
-
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate publication;
-
-    private Boolean isEnabled;
-
-    private LocationDTO locationDTO;
-
-    private Long imageId;
-
-}
+    Long cardId,
+    String description,
+    String title,
+    UUID url,
+    Long imageId,
+    @JsonFormat(pattern="dd.MM.yyyy")
+    LocalDate publication,
+    List<CategoryDto> categories,
+    LocationDTO location,
+    Boolean isEnabled
+) implements Serializable {}

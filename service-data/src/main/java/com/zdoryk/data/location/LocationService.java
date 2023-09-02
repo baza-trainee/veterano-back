@@ -1,6 +1,6 @@
 package com.zdoryk.data.location;
 
-import com.zdoryk.data.dto.LocationFindRequest;
+import com.zdoryk.data.dto.LocationDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +25,10 @@ public class LocationService {
         return locationRepository.findAll();
     }
 
-    public Optional<Location> getLocationByCountryAndCity(LocationFindRequest locationFindRequest) {
+    public Optional<Location> getLocationByCountryAndCity(LocationDTO locationFindRequest) {
         return locationRepository.getLocationByCountryAndCity(
                 locationFindRequest.getCountry(),
                 locationFindRequest.getCity()
         );
     }
-
-
-
 }

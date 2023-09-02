@@ -15,7 +15,6 @@ import java.util.Objects;
 @Builder
 @Getter
 @Setter
-@ToString
 @Entity(name = "category")
 public class Category {
 
@@ -31,12 +30,15 @@ public class Category {
     @JsonIgnore
     private Long categoryId;
 
-    @Column(nullable = false)
+    @Column(
+            nullable = false,
+            unique = true
+    )
     private String categoryName;
 
     @JsonIgnoreProperties({"location","imageList","cardList","category"})
-    @OneToMany(
-            mappedBy = "category",
+    @ManyToMany(
+            mappedBy = "categories",
             fetch = FetchType.EAGER
     )
     private List<Card> cardList;
@@ -51,6 +53,11 @@ public class Category {
         Category category = (Category) object;
         return getCategoryId() != null && Objects.equals(getCategoryId(), category.getCategoryId());
     }
+
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
 
     @Override
     public final int hashCode() {

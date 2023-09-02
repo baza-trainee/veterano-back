@@ -2,7 +2,7 @@ package com.zdoryk.data.feedback;
 
 import com.zdoryk.data.dto.FeedbackDto;
 import com.zdoryk.data.exception.NotFoundException;
-import com.zdoryk.data.exception.NotValidEmailException;
+import com.zdoryk.data.exception.NotValidFieldException;
 import com.zdoryk.data.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,10 +21,11 @@ public class FeedbackService {
 
         if(feedbackDto.getEmail() != null){
             if(Utils.isValidEmail(feedbackDto.getEmail())){
-                throw  new NotValidEmailException("Email is not valid");
+                throw  new NotValidFieldException("Email is not valid");
             }
         }
-        Feedback feedback = new Feedback().builder()
+
+        Feedback feedback = Feedback.builder()
                 .name(feedbackDto.getName())
                 .message(feedbackDto.getMessage())
                 .email(feedbackDto.getEmail())

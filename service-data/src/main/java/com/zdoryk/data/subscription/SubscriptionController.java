@@ -33,7 +33,7 @@ public class SubscriptionController {
         );
     }
 
-    @DeleteMapping("/unsubscribe")
+    @GetMapping("/unsubscribe")
     public ResponseEntity<?> unsubscribeUser(
             @RequestParam("email")
             String email

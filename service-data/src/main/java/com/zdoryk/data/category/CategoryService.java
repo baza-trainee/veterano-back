@@ -23,13 +23,11 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
-    public List<CategoryDto> getAllCategories(){
-        return categoryRepository
-                .findAll()
-                .stream()
-                .map(category -> new CategoryDto(
-                        category.getCategoryName()
-                ))
-                .collect(Collectors.toList());
+    public void saveCategories(List<Category> categories){
+        categoryRepository.saveAll(categories);
+    }
+
+    public List<Category> getAllCategories(){
+        return categoryRepository.findAll();
     }
 }

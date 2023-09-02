@@ -1,17 +1,21 @@
 package com.zdoryk.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CardWithOutLocation {
+@Data
+public class UpdateCardDTO implements Serializable {
+
+    private Long cardId;
 
     private String description;
 
@@ -19,11 +23,15 @@ public class CardWithOutLocation {
 
     private String url;
 
-    private String category;
+    private String image;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="dd.MM.yyyy")
     private LocalDate publication;
 
-    private Long imageId;
+    @Valid
+    private List<CategoryDto> categories;
 
+    private LocationDTO location;
+
+    private Boolean isEnabled;
 }

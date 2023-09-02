@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.zdoryk.data.category.Category;
 import com.zdoryk.data.image.Image;
 import com.zdoryk.data.location.Location;
+import com.zdoryk.data.url.Url;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,7 +20,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @Builder
-@ToString
 @Entity(name = "Card")
 public class Card implements Serializable {
 
@@ -33,27 +32,31 @@ public class Card implements Serializable {
             strategy = GenerationType.SEQUENCE,
             generator = "card_id_sequence"
     )
-    @Column(name = "card_id")
     private Long cardId;
-
-    private String description;
 
     private String title;
 
-    private String url;
+    private String description;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonIgnoreProperties({"location","imageList","cardList","url"})
+    @OneToOne(
+            mappedBy = "card",
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+    )
+    private Url url;
+
+    @JsonFormat(pattern="dd.MM.yyyy")
     private LocalDate publication;
 
     private Boolean isEnabled;
 
     @JsonIgnoreProperties("cardList")
-    @ManyToOne()
+    @ManyToMany()
     @JoinColumn(
             name = "category",
             nullable = false
     )
-    private Category category;
+    private List<Category> categories;
 
     @JsonIgnoreProperties("cardList")
     @ManyToOne()
@@ -66,7 +69,8 @@ public class Card implements Serializable {
     @JsonIgnoreProperties("data")
     @OneToMany(
             mappedBy = "card",
-            fetch = FetchType.EAGER
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.REMOVE
     )
     private List<Image> imageList;
 

@@ -3,7 +3,7 @@ package com.zdoryk.data.subscription;
 import com.zdoryk.RabbitMQRunner;
 import com.zdoryk.data.card.Card;
 import com.zdoryk.data.exception.NotFoundException;
-import com.zdoryk.data.exception.NotValidEmailException;
+import com.zdoryk.data.exception.NotValidFieldException;
 import com.zdoryk.data.exception.ResourceExistsException;
 import com.zdoryk.data.utils.Utils;
 import com.zdoryk.util.CardToSendEmail;
@@ -26,7 +26,7 @@ public class SubscriptionService {
     public void subscribe(Subscription subscriptionToSave){
 
         if(Utils.isValidEmail(subscriptionToSave.getEmail())){
-            throw  new NotValidEmailException("Email is not valid");
+            throw  new NotValidFieldException("Email is not valid");
         }
 
         Optional<Subscription> optionalSubscription = subscriptionRepository
@@ -37,7 +37,7 @@ public class SubscriptionService {
         }
 
 
-        Subscription subscription = new Subscription().builder()
+        Subscription subscription = Subscription.builder()
                 .email(subscriptionToSave.getEmail())
                 .name(subscriptionToSave.getName())
                 .build();
@@ -72,7 +72,7 @@ public class SubscriptionService {
                         .map(card -> new CardToSendEmail(
                                 card.getDescription(),
                                 card.getTitle(),
-                                card.getUrl(),
+                                card.getUrl().getUrl(),
                                 card.getDescription(),
                                 card.getLocation().getCountry(),
                                 card.getLocation().getCity()

@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 public class ImageService {
 
     private final ImageRepository imageRepository;
-    private final Base64Service base64Service;
-
 
     public void saveImage(Image image){
         image.setImage(image.getImage());
@@ -22,6 +20,11 @@ public class ImageService {
         Image image = imageRepository.getImageByImageId(id)
                 .orElseThrow(() -> new NotFoundException("Image with this ID doesn't exist"));
 
-        return base64Service.decodeBase64ToImage(image.getImage());
+        return Base64Service.decodeBase64ToImage(image.getImage());
     }
+
+    public void deleteImage(Image image){
+        imageRepository.delete(image);
+    }
+
 }
