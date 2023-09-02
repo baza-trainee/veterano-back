@@ -28,41 +28,31 @@ public class UserAuthController extends GenericController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<APICustomResponse> login(
+    public ResponseEntity<?> login(
             @Valid @RequestBody
             UserLoginRequest userLoginRequest){
 
 
-            return createResponse(
-                    Map.of("user", userAuthService.login(userLoginRequest)),
-                    "user",
-                    HttpStatus.OK
+            return ResponseEntity.ok(
+                    Map.of(
+                            "token",
+                            userAuthService.login(userLoginRequest)
+                    )
             );
-//
-//        throw new RateLimitExceededException("The speed limit has been exceeded." +
-//                " Please try again later.");
     }
 
     @PostMapping("/register")
-    public ResponseEntity<APICustomResponse> saveUser(
+    public ResponseEntity<?> saveUser(
             @Valid @RequestBody
             UserRegistrationRequest userRegistrationRequest){
 
-            return createResponse(
-                    Map.of("link", userAuthService.registerUser(userRegistrationRequest)),
-                    "User registered, please activate account",
-                    HttpStatus.OK
+            return ResponseEntity.ok(Map.of(
+               "token",userAuthService.registerUser(userRegistrationRequest))
             );
     }
     @GetMapping("/approve-token")
     public void approveToken(@RequestParam("token") String token){
-
-//        if(bucket.tryConsume(1L)) {
             userAuthService.confirmToken(token);
-//        }
-//
-//        throw new RateLimitExceededException("The speed limit has been exceeded." +
-//                " Please try again later.");
     }
 
     @PostMapping("/validate-token")
@@ -73,28 +63,20 @@ public class UserAuthController extends GenericController {
 
 
     @GetMapping("/password-reset-request")
-    public ResponseEntity<APICustomResponse> requestResetPassword(
+    public ResponseEntity<?> requestResetPassword(
             @RequestParam("email") String email){
 
         passwordResetService.generatePasswordResetToken(email);
-        return createResponse(
-                Map.of("USER","email"),
-                "success",
-                HttpStatus.OK
-        );
+        return ResponseEntity.status(200).build();
     }
 
     @PostMapping("/password-reset")
-    public ResponseEntity<APICustomResponse> resetPassword(
+    public ResponseEntity<?> resetPassword(
             @RequestParam("token") String token,
             @RequestParam("password") String newPassword
     ) {
         passwordResetService.resetPassword(token,newPassword);
-        return createResponse(
-                Map.of("USER","email"),
-                "success",
-                HttpStatus.OK
-        );
+        return ResponseEntity.status(200).build();
     }
 
 

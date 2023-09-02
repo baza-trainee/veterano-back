@@ -4,8 +4,8 @@ spring:
   application:
     name: email
   mail:
-    host: smtp.gmail.com
-    password: zxywkycbcpvnjokc
+    host: eushared15.twinservers.net
+    password: 077214hyst*
     port: 587
     properties:
       mail:
@@ -13,7 +13,7 @@ spring:
           auth: true
           starttls:
             enable: true
-    username: asusnik241201@gmail.com
+    username: info@hyst.site
 
   rabbitmq:
    addresses: rabbitmq:5672
@@ -25,3 +25,8 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     enabled: true
+
+
+links:
+  unsubscribe: http://45.94.157.117:8080/api/v1/subscription/unsubscribe?email=
+

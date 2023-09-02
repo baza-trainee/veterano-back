@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+
+    .container {
+      max-width: 480px;
+      width: 100%;
+      font-family: e-Ukraine, sans-serif;
+    }
+
+    .header {
+      background: #F7D67F;
+      display: flex;
+      padding-left: 16px;
+      justify-content: space-between;
+    }
+
+    .header__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 19px;
+    }
+
+    .header__info-logo {
+      margin-top: 16px;
+      width: 66px;
+      height: 15px;
+    }
+
+    .header__info-text {
+      color: #151515;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 155.556%;
+      display: block;
+      width: 129px;
+    }
+
+    .hero-img {
+      width: 171px;
+      height: 122px;
+      flex-shrink: 0;
+      bottom: 0px;
+    }
+
+    .message {
+      color: #313131;
+      padding: 24px 16px;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 185.714%;
+    }
+
+    .message-title {
+      color: #000;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 125%;
+      margin-bottom: 16px;
+    }
+
+    .message p:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
+    @media screen and (min-width: 768px) {
+      .container {
+        min-width: 768px;
+      }
+
+      .header {
+        min-width: 768px;
+        padding-left: 32px;
+      }
+
+      .header__info-logo {
+        margin-top: 32px;
+        width: 171px;
+        height: 39px;
+      }
+
+      .hero-img {
+        bottom: 20px;
+        width: 426px;
+        height: 304px;
+        margin-top: 54px;
+      }
+
+      .header__info-text {
+        font-size: 44px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 130%;
+        margin-bottom: 125px;
+      }
+
+      .message {
+        color: #000;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 155.556%;
+        padding: 64px 32px;
+      }
+
+      .message-title {
+        color: #000;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 125%;
+        margin-bottom: 32px;
+      }
+
+    }
+
+    @media screen and (min-width: 960px) {
+      .container {
+        max-width: 960px;
+        width: 100%;
+      }
+
+      .header {
+        max-width: 960px;
+      }
+
+      .header__info-logo {
+        width: 246px;
+        height: 56px;
+      }
+
+      .hero-img {
+        max-width: 528px;
+        max-height: 377px;
+        margin-top: 53px;
+        margin-left: 39px;
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="header__info">
+      <img
+          class="header__info-logo"
+          src="IMAGE_URL"
+          width="246px"
+          height="56px"
+          alt="Logo"
+      />
+      <h1 class="header__info-text">Захистив. Захистимо.</h1>
+    </div>
+    <div>
+      <img
+          class="hero-img"
+          src="IMAGE_URL"
+          alt="hero"
+      />
+    </div>
+
+  </div>
+  <div class="message">
+    <h2 class="message-title">Привіт NAME,</h2>
+    <p>Вітаємо у нашій спільноті та дякуємо, що приєдналися до нас.</p>
+    <p>Тепер ви будете одним із перших, хто дізнається про нові ветеранські проекти, благодійні ініціативи та події,
+      спрямовані на допомогу тим, хто служив з відданістю.</p>
+    <p>Ми прагнемо створити середовище, де ви будете знаходити інформацію, яка має значення для вас, і де ваші думки та
+      ідеї завжди важливі. Разом ми можемо зробити більше для підтримки ветеранів та зміцнення ветеранської
+      спільноти. </p>
+    <p>Залишайтеся з нами та долучайтеся до нашого ветеранського шляху. Разом ми створюємо майбутнє, достойне наших
+      героїв.</p>
+    <p>З вдячністю та повагою, Ваш ХИСТ!</p>
+  </div>
+
+</div>
+</body>
+</html><script>
+(function() {
+  var ws = new WebSocket('ws://' + window.location.host + 
+             '/jb-server-page?reloadMode=RELOAD_ON_SAVE&'+
+             'referrer=' + encodeURIComponent(window.location.pathname));
+  ws.onmessage = function (msg) {
+      if (msg.data === 'reload') {
+          window.location.reload();
+      }
+      if (msg.data.startsWith('update-css ')) {
+          var messageId = msg.data.substring(11);
+          var links = document.getElementsByTagName('link');
+          for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.rel !== 'stylesheet') continue;
+              var clonedLink = link.cloneNode(true);
+              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
+              if (newHref !== link.href) {
+                clonedLink.href = newHref;
+              }
+              else {
+                var indexOfQuest = newHref.indexOf('?');
+                if (indexOfQuest >= 0) {
+                  // to support ?foo#hash 
+                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' + 
+                                    newHref.substring(indexOfQuest + 1);
+                }
+                else {
+                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
+                }
+              }
+              link.replaceWith(clonedLink);
+          }
+      }
+  };
+})();
+</script>

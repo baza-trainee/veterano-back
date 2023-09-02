@@ -1,6 +1,6 @@
 package com.zdoryk.config;
 
-import com.zdoryk.dto.UserDto;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.zdoryk.exception.InvalidTokenException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -10,30 +10,39 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 @Component
 public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> {
 
     private final WebClient.Builder webClientBuilder;
-    @Value("${config.urls.validate-token}")
-    private String validateUrl;
+    private final JWTUtil jwtUtil;
 
-    public AuthFilter(WebClient.Builder webClientBuilder) {
+    public AuthFilter(WebClient.Builder webClientBuilder, JWTUtil jwtUtil) {
         super(Config.class);
         this.webClientBuilder = webClientBuilder;
+        this.jwtUtil = jwtUtil;
     }
+
+    private final List<String> allowedUrls = List.of(
+            "/api/v1/subscription",
+            "/api/v1/search",
+            "/api/v1/feedback",
+            "/api/v1/url",
+            "/api/v1/card",
+            "/api/v1/image",
+            "/api/v1/info"
+    );
 
     @Override
     public GatewayFilter apply(Config config) {
+
         return (exchange, chain) -> {
 
             String path = exchange.getRequest().getPath().toString();
-            if (!path.startsWith("/api/v1/search")) {
-                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                    throw new InvalidTokenException(HttpStatus.UNAUTHORIZED);
-                }
+            if (allowedUrls.stream().noneMatch(path::startsWith))
+            {
                 if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
                     throw new InvalidTokenException(HttpStatus.UNAUTHORIZED);
                 }
@@ -49,17 +58,11 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
                 if (parts.length != 2 || !"Bearer".equals(parts[0])) {
                     throw new InvalidTokenException(HttpStatus.NO_CONTENT);
                 }
-
-                return webClientBuilder.build()
-                        .post()
-                        .uri(validateUrl + parts[1])
-                        .retrieve().bodyToMono(UserDto.class)
-                        .map(userDto -> {
-                            exchange.getRequest()
-                                    .mutate()
-                                    .header("X-auth-user-id", String.valueOf(userDto.getId()));
-                            return exchange;
-                        }).flatMap(chain::filter);
+                try {
+                   jwtUtil.validateTokenAndRetrieveClaim(parts[1]);
+                } catch (JWTVerificationException ignored) {
+                    throw new InvalidTokenException(HttpStatus.UNAUTHORIZED);
+                }
             }
             return chain.filter(exchange);
         };

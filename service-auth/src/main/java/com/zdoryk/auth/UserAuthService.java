@@ -8,6 +8,7 @@ import com.zdoryk.dto.UserRegistrationRequest;
 import com.zdoryk.confirmationToken.ConfirmationService;
 import com.zdoryk.confirmationToken.ConfirmationToken;
 import com.zdoryk.util.JWTUtil;
+import com.zdoryk.util.Utils;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,10 @@ public class UserAuthService {
 
     public String login(UserLoginRequest userLoginRequest){
 
+        if(Utils.isValidEmail(userLoginRequest.email())){
+            throw new IncorrectDataException("Email is not valid");
+        }
+
         User user = userRepository.findUserByEmail(userLoginRequest.email())
                 .orElseThrow(() -> new NotFoundException("User does not exist"));
 
@@ -34,7 +39,7 @@ public class UserAuthService {
             throw new IncorrectDataException("User with these data didn't activated account yet");
         }
         if (!passwordEncoder.matches(userLoginRequest.password(), user.getPassword())) {
-            throw new IncorrectDataException("Incorrect password");
+            throw new IncorrectDataException("Incorrect data");
         }
 
         return jwtUtil.generateToken(user.getEmail());
@@ -43,6 +48,11 @@ public class UserAuthService {
 
     @Transactional
     public String registerUser(UserRegistrationRequest userRegistrationRequest) {
+
+        if(Utils.isValidEmail(userRegistrationRequest.getEmail())){
+            throw new IncorrectDataException("Email is not valid");
+        }
+
         String email = userRegistrationRequest.getEmail();
 
         if (userRepository.existsUserByEmail(email)) {
@@ -78,6 +88,9 @@ public class UserAuthService {
 
 
     public UserDto validateToken(String token) {
+
+
+
         String email = jwtUtil.validateTokenAndRetrieveClaim(token);
         User user = userRepository.findUserByEmail(email)
                 .orElseThrow(() -> new NotFoundException("User not found"));

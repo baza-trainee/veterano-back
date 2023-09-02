@@ -1,5 +1,6 @@
 package com.zdoryk.exceptions;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.zdoryk.core.APICustomResponse;
 import com.zdoryk.core.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -67,6 +68,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IncorrectDataException.class)
     public ResponseEntity<Map<String, String>> handleIncorrectDataError(IncorrectDataException ex) {
+        Map<String, String> errors = new HashMap<>();
+        String errorMessage = ex.getMessage();
+        errors.put("error", errorMessage);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errors);
+    }
+
+    @ExceptionHandler(JWTVerificationException.class)
+    public ResponseEntity<Map<String, String>> handleIncorrectDataError(JWTVerificationException ex) {
         Map<String, String> errors = new HashMap<>();
         String errorMessage = ex.getMessage();
         errors.put("error", errorMessage);

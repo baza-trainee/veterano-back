@@ -11,7 +11,6 @@ import com.zdoryk.data.info.contact.Contact;
 import com.zdoryk.data.info.contact.ContactRepository;
 import com.zdoryk.data.info.partner.Partner;
 import com.zdoryk.data.info.partner.PartnerRepository;
-import com.zdoryk.data.mappers.PartnerMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -31,7 +30,7 @@ public class InfoService {
     private final PartnerRepository partnerRepository;
     private final ContactRepository contactRepository;
     private final ImageService imageService;
-    private final PartnerMapper partnerMapper;
+
 
     @Transactional
     @CacheEvict(cacheNames = "partners", allEntries = true)
@@ -165,7 +164,15 @@ public class InfoService {
     public PartnerDTO getPartnerById(Long id){
         Partner partner = partnerRepository.getPartnerByPartnerId(id)
                 .orElseThrow(() -> new NotFoundException("Partner does not exist"));
-        return partnerMapper.toPartnerDTO(partner);
+//        return partnerMapper.toPartnerDTO(partner);
+        return new PartnerDTO(
+                partner.getPartnerId(),
+                partner.getPartnerName(),
+                partner.getImage().getImageId().toString(),
+                partner.getUrl(),
+                partner.getPublication(),
+                partner.getIsEnabled()
+        );
     }
 
 }
