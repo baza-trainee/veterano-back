@@ -24,7 +24,7 @@ public class UrlService {
     @SneakyThrows
     public URI redirectById(UUID id){
         Url uri = urlRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("by this id does not exist url"));
+                .orElseThrow(() -> new NotFoundException("By this id does not exist url"));
 
         uri.setVisitors(uri.getVisitors() + 1L);
         urlRepository.save(uri);

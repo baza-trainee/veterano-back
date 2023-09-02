@@ -67,12 +67,12 @@ public class Card implements Serializable {
     private Location location;
 
     @JsonIgnoreProperties("data")
-    @OneToMany(
+    @OneToOne(
             mappedBy = "card",
             fetch = FetchType.EAGER,
             cascade = CascadeType.REMOVE
     )
-    private List<Image> imageList;
+    private Image image;
 
     @Override
     public final boolean equals(Object object) {

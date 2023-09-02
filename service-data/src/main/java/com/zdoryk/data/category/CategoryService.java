@@ -19,9 +19,6 @@ public class CategoryService {
         return categoryRepository.findByCategoryName(name);
     }
 
-    public void saveCategory(Category category) {
-        categoryRepository.save(category);
-    }
 
     public void saveCategories(List<Category> categories){
         categoryRepository.saveAll(categories);

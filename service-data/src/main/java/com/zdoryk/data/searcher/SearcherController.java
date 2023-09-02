@@ -114,7 +114,7 @@ public class SearcherController {
             ) Integer page,
             @RequestParam(
                     value = "size",
-                    defaultValue = "10"
+                    defaultValue = "5"
             ) Integer size
     ){
         return ResponseEntity.ok(searchService.getAllPartners(page,size));

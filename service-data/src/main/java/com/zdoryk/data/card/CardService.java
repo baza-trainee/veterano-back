@@ -8,6 +8,7 @@ import com.zdoryk.data.image.Image;
 import com.zdoryk.data.image.ImageService;
 import com.zdoryk.data.location.Location;
 import com.zdoryk.data.location.LocationService;
+import com.zdoryk.data.mappers.CardMapper;
 import com.zdoryk.data.subscription.SubscriptionService;
 import com.zdoryk.data.url.Url;
 import com.zdoryk.data.url.UrlService;
@@ -37,6 +38,8 @@ public class CardService {
     private final CategoryService categoryService;
     private final SubscriptionService subscriptionService;
     private final UrlService urlService;
+    private final CardMapper cardMapper;
+
     @Transactional
     @CacheEvict(cacheNames = "cards", allEntries = true)
     public void saveCard(CardSaveRequest cardSaveRequest) {
@@ -87,13 +90,10 @@ public class CardService {
 
         url.setCard(card);
 
-        List<Image> imageList = new ArrayList<>();
         Image image = Image.builder()
                 .image(cardSaveRequest.getImage())
                 .card(card)
                 .build();
-
-        imageList.add(image);
 
         if (location.getCardList() == null) {
             location.setCardList(new ArrayList<>());
@@ -101,7 +101,7 @@ public class CardService {
 
         location.getCardList().add(card);
         card.setLocation(location);
-        card.setImageList(imageList);
+        card.setImage(image);
         card.setCategories(categories);
         categoryService.saveCategories(categories);
         locationService.saveLocation(location);
@@ -139,15 +139,13 @@ public class CardService {
             urlService.saveUrl(url);
         }
         if(cardDTO.getImage() != null && !cardDTO.getImage().isEmpty()){
-           imageService.deleteImage(card.getImageList().get(0));
+           imageService.deleteImage(card.getImage());
            Image image = Image
                    .builder()
                    .image(cardDTO.getImage())
                    .card(card)
                    .build();
-           List<Image> imageList = new ArrayList<>();
-           imageList.add(image);
-           card.setImageList(imageList);
+           card.setImage(image);
            imageService.saveImage(image);
         }
         if(cardDTO.getLocation() != null){
@@ -193,25 +191,10 @@ public class CardService {
     public List<CardDTO> getAllCardsWithImageId(int page,int size) {
 
         return cardRepository
-                .findAll(PageRequest.of(page,size))
+                .findAll(PageRequest.of(page, size))
                 .getContent()
                 .stream()
-                .map(card -> new CardDTO(
-                        card.getCardId(),
-                        card.getDescription(),
-                        card.getTitle(),
-                        card.getUrl().getId(),
-                        card.getImageList().isEmpty() ? null : card.getImageList().get(0).getImageId(),
-                        card.getPublication(),
-                        card.getCategories().stream()
-                                .map(x -> new CategoryDto(x.getCategoryName()))
-                                .collect(Collectors.toList()),
-                        new LocationDTO(
-                                card.getLocation().getCountry(),
-                                card.getLocation().getCity()
-                        ),
-                        card.getIsEnabled()
-                ))
+                .map(cardMapper::toCardDTO)
                 .collect(Collectors.toList());
     }
 
@@ -227,22 +210,7 @@ public class CardService {
         List<CardDTO> cardDTOS = cards
                 .subList(startIndex, endIndex)
                 .stream()
-                .map(card -> new CardDTO(
-                        card.getCardId(),
-                        card.getDescription(),
-                        card.getTitle(),
-                        card.getUrl().getId(),
-                        card.getImageList().isEmpty() ? null : card.getImageList().get(0).getImageId(),
-                        card.getPublication(),
-                        card.getCategories().stream()
-                                .map(x -> new CategoryDto(x.getCategoryName()))
-                                .collect(Collectors.toList()),
-                        new LocationDTO(
-                                card.getLocation().getCountry(),
-                                card.getLocation().getCity()
-                        ),
-                        card.getIsEnabled()
-                ))
+                .map(cardMapper::toCardDTO)
                 .toList();
 
         return new CardsPagination(
@@ -280,22 +248,7 @@ public class CardService {
     public CardDTO getCardById(Long id) {
         Card card =  cardRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("NOT FOUND"));
-        return new CardDTO(
-                card.getCardId(),
-                card.getDescription(),
-                card.getTitle(),
-                card.getUrl().getId(),
-                card.getImageList().isEmpty() ? null : card.getImageList().get(0).getImageId(),
-                card.getPublication(),
-                card.getCategories().stream()
-                        .map(x -> new CategoryDto(x.getCategoryName()))
-                        .collect(Collectors.toList()),
-                new LocationDTO(
-                        card.getLocation().getCountry(),
-                        card.getLocation().getCity()
-                ),
-                card.getIsEnabled()
-        );
+        return cardMapper.toCardDTO(card);
     }
 
     @CacheEvict(cacheNames = "cards", allEntries = true)

@@ -45,7 +45,7 @@ public class InfoController {
     public ResponseEntity<PartnersPagination> getAllPartners(
             @RequestParam(
                     value = "page",
-                    defaultValue = "0"
+                    defaultValue = "1"
             ) Integer page,
             @RequestParam(
                     value = "size",

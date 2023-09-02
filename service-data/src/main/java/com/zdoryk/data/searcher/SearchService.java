@@ -7,6 +7,7 @@ import com.zdoryk.data.dto.*;
 import com.zdoryk.data.exception.NotValidFieldException;
 import com.zdoryk.data.info.InfoService;
 import com.zdoryk.data.location.LocationService;
+import com.zdoryk.data.mappers.CardMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -26,6 +26,7 @@ public class SearchService {
     private final LocationService locationService;
     private final CategoryService categoryService;
     private final InfoService infoService;
+    private final CardMapper cardMapper;
 
 
     public List<CategoryDto> getAllCategories() {
@@ -67,7 +68,6 @@ public class SearchService {
                 }
             }
         }
-        System.out.println(locationList);
         if (categories != null && !categories.isEmpty()) {
             categories.replaceAll(s -> s + " ");
             categories.replaceAll(s -> s.replaceAll("\\s+"," "));
@@ -97,8 +97,8 @@ public class SearchService {
                     .stream()
                     .filter(card ->
                             card.getCategories()
-                                    .stream()
-                                    .anyMatch(category -> categories.contains(category.getCategoryName()))
+                            .stream()
+                            .anyMatch(category -> categories.contains(category.getCategoryName()))
                     )
                     .toList();
         }
@@ -113,22 +113,7 @@ public class SearchService {
                 .subList(startIndex, endIndex)
                 .stream()
                 .filter(Card::getIsEnabled)
-                .map(card -> new CardDTO(
-                        card.getCardId(),
-                        card.getDescription(),
-                        card.getTitle(),
-                        card.getUrl().getId(),
-                        card.getImageList().isEmpty() ? null : card.getImageList().get(0).getImageId(),
-                        card.getPublication(),
-                        card.getCategories().stream()
-                                .map(x -> new CategoryDto(x.getCategoryName()))
-                                .collect(Collectors.toList()),
-                        new LocationDTO(
-                                card.getLocation().getCountry(),
-                                card.getLocation().getCity()
-                        ),
-                        card.getIsEnabled()
-                ))
+                .map(cardMapper::toCardDTO)
                 .toList();
 
         return new CardsPagination(

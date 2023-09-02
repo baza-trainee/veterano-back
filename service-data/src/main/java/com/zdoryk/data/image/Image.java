@@ -33,7 +33,7 @@ public class Image {
 
     @JsonIgnoreProperties({"imageList","data"})
     @JsonIgnore
-    @ManyToOne()
+    @OneToOne()
     @JoinColumn(
             name = "card_id"
     )
