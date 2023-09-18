@@ -8,4 +8,5 @@ public record PartnersPagination(
     Integer totalPages,
     Integer totalSize
 
-) implements Serializable {}
+) implements Serializable {
+}

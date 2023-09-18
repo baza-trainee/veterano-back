@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -61,25 +62,29 @@ public class SubscriptionService {
 
     @Async
     @Transactional
-    public void notifyAllSubscriberAboutNewCards(List<Card> cards){
+    public void notifyAllSubscriberAboutNewCards(List<Card> cards) {
         List<ConsumerDto> consumers = subscriptionRepository.findAll()
-                        .stream()
-                        .map(sub -> new ConsumerDto(
-                            sub.getEmail(),
-                            sub.getName()
-                        )).toList();
-        List<CardToSendEmail> cardToSendEmails = cards.stream()
-                        .map(card -> new CardToSendEmail(
-                                card.getDescription(),
-                                card.getTitle(),
-                                card.getUrl().getUrl(),
-                                card.getDescription(),
-                                card.getLocation().getCountry(),
-                                card.getLocation().getCity()
-                        )).toList();
+                .stream()
+                .map(sub -> new ConsumerDto(
+                        sub.getEmail(),
+                        sub.getName()
+                ))
+                .collect(Collectors.toList()); // Use collect(Collectors.toList()) for conversion.
 
-        rabbitMQRunner.sendNewCardsToSubscribers(consumers,cardToSendEmails);
+        List<CardToSendEmail> cardToSendEmails = cards.stream()
+                .map(card -> new CardToSendEmail(
+                        card.getDescription(),
+                        card.getTitle(),
+                        card.getUrl().getId().toString(),
+                        card.getDescription(),
+                        card.getLocation().getCountry(),
+                        card.getLocation().getCity()
+                ))
+                .collect(Collectors.toList());
+
+        rabbitMQRunner.sendNewCardsToSubscribers(consumers, cardToSendEmails);
     }
+
 
 
     public List<Subscription> getAllSubscriptions(){

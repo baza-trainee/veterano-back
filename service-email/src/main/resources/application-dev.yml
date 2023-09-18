@@ -28,5 +28,5 @@ eureka:
 
 
 links:
-  unsubscribe: http://45.94.157.117:8080/api/v1/subscription/unsubscribe?email=
-
+  unsubscribe: https://hyst.baza-trainee-back.space/api/v1/subscription/unsubscribe?email=
+  site:  https://hyst.baza-trainee-back.space/api/v1/url/redirect/

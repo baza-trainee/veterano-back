@@ -1,10 +1,8 @@
 package com.zdoryk.data.card;
 
 import com.zdoryk.data.core.ApiResponse;
-import com.zdoryk.data.dto.CardDTO;
-import com.zdoryk.data.dto.CardSaveRequest;
-import com.zdoryk.data.dto.CardsPagination;
-import com.zdoryk.data.dto.UpdateCardDTO;
+import com.zdoryk.data.dto.*;
+import com.zdoryk.data.searcher.SearchService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -13,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Tag(name = "Controller for cards", description = "provides with JWT Token")
@@ -22,6 +21,7 @@ import java.util.Map;
 public class CardController {
 
     private final CardService cardService;
+    private final SearchService searchService;
 
     @Operation(summary = "Save a Card", description = "Returns a product as per the id")
     @PostMapping("add")
@@ -57,6 +57,12 @@ public class CardController {
            @RequestParam("id") Long id
     ){
        return ResponseEntity.ok(cardService.getCardById(id));
+    }
+
+    @Operation(description = "Get all Categories")
+    @GetMapping("all-categories")
+    public ResponseEntity<List<CategoryDto>> getAllCategories(){
+        return ResponseEntity.ok(searchService.getAllCategoriesAdmin());
     }
 
     @Operation(description = "get all cards")

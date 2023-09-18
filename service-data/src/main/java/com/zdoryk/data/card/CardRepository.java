@@ -12,4 +12,6 @@ public interface CardRepository extends JpaRepository<Card,Long> {
 
     List<Card> findCardByIsEnabledFalse();
     List<Card> findCardByIsEnabledTrue();
+
+    List<Card> findCardByIsActiveTrue();
 }

@@ -25,7 +25,9 @@ security:
     token:
       secret-key: 923593859385983912541253261
 
-
+config:
+  file:
+    upload-dir: service-data/src/main/resources/pdfs
 
 
 eureka:

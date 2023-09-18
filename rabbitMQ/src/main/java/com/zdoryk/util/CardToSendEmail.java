@@ -24,4 +24,5 @@ public class CardToSendEmail implements Serializable {
 
     private String city;
 
+
 }

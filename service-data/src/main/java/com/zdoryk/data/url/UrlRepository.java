@@ -10,5 +10,6 @@ import java.util.UUID;
 public interface UrlRepository extends JpaRepository<Url, UUID> {
 
     Optional<Url> getUrlByUrl(String url);
+    Optional<Url> getUrlById(UUID id);
 
 }

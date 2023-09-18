@@ -14,10 +14,10 @@ import java.io.Serializable;
 public class LocationDTO implements Serializable {
 
     @NotBlank(message = "City is required")
-    @Pattern(regexp = "^[A-Za-z ]+$", message = "City is required and should not contain numbers")
+    @Pattern(regexp = "^[A-Za-zА-Яа-яЁёҐґІіЇїЄє ]+$", message = "City is required and should not contain numbers")
     private String city;
 
     @NotBlank(message = "Country is required")
-    @Pattern(regexp = "^[A-Za-z ]+$", message = "Country is required and should not contain numbers")
+    @Pattern(regexp = "^[A-Za-zА-Яа-яЁёҐґІіЇїЄє ]+$", message = "Country is required and should not contain numbers")
     private String country;
 }

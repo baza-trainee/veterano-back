@@ -42,4 +42,6 @@ public class Partner {
     private LocalDate publication;
 
     private Boolean isEnabled;
+
+    private Boolean isActive;
 }

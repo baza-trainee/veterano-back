@@ -2,7 +2,7 @@ package com.zdoryk.resetToken;
 
 import com.zdoryk.RabbitMQRunner;
 import com.zdoryk.auth.User;
-import com.zdoryk.auth.UserAuthService;
+import com.zdoryk.auth.AuthenticationService;
 import com.zdoryk.auth.UserRepository;
 import com.zdoryk.exceptions.IncorrectDataException;
 import com.zdoryk.exceptions.NotFoundException;
@@ -21,7 +21,7 @@ public class PasswordResetService {
     private final PasswordResetTokenRepository tokenRepository;
     private final UserRepository userRepository;
     private final RabbitMQRunner rabbitMQRunner;
-    private final UserAuthService userService;
+    private final AuthenticationService userService;
 
 
     @Value("${config.urls.reset-password}")

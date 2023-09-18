@@ -35,7 +35,6 @@ public class CardSaveRequest implements Serializable {
     @NotBlank(message = "image cant be blank")
     private String image;
 
-
     @NotBlank(message = "url is blank")
     private String url;
 
@@ -50,5 +49,6 @@ public class CardSaveRequest implements Serializable {
     @NotNull(message = "location is null")
     @Valid
     private LocationDTO location;
+
 }
 

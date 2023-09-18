@@ -25,3 +25,6 @@ security:
   jwt:
     token:
       secret-key: 923593859385983912541253261
+      expiration: 60000 # a day
+      refresh-token:
+        expiration: 60480000 # 7 days

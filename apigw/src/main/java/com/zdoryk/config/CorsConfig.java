@@ -14,11 +14,11 @@ public class CorsConfig {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowCredentials(true);
         corsConfig.addAllowedOrigin(
-                "http://localhost:5173," +
-                "http://45.94.157.117:4173/," +
-                "http://localhost:4173/," +
-                "http://45.94.157.117:5173," +
-                "https://veterano-front-vert.vercel.app/"
+                        "http://localhost:5173," +
+                        "https://hyst.site," +
+                        "http://hyst.site," +
+                        "http://45.94.157.117:5173,"+
+                        "https://hyst.site/"
         );
         corsConfig.addAllowedHeader("*");
         corsConfig.addAllowedMethod("*");

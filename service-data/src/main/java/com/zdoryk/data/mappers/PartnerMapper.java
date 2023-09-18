@@ -10,8 +10,8 @@ import org.mapstruct.Mapping;
 public interface PartnerMapper {
 
     @Mapping(target = "id",source = "partnerId")
+    @Mapping(target = "isEnabled", source = "isActive")
     PartnerDTO toPartnerDTO(Partner partner);
-
 
     default String map(Image image) {
         if (image == null) {

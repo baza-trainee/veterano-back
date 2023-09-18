@@ -1,32 +1,38 @@
 package com.zdoryk.auth;
-import com.zdoryk.exceptions.IncorrectDataException;
-import com.zdoryk.exceptions.NotFoundException;
-import com.zdoryk.exceptions.ResourceExistsException;
-import com.zdoryk.dto.UserDto;
+import com.zdoryk.core.AuthenticationResponse;
+import com.zdoryk.exceptions.*;
 import com.zdoryk.dto.UserLoginRequest;
 import com.zdoryk.dto.UserRegistrationRequest;
 import com.zdoryk.confirmationToken.ConfirmationService;
 import com.zdoryk.confirmationToken.ConfirmationToken;
 import com.zdoryk.util.JWTUtil;
 import com.zdoryk.util.Utils;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Service
-public class UserAuthService {
+public class AuthenticationService {
 
     private final UserRepository userRepository;
     private final JWTUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
     private final ConfirmationService confirmationService;
 
-    public String login(UserLoginRequest userLoginRequest){
+    public AuthenticationResponse login(UserLoginRequest userLoginRequest){
 
         if(Utils.isValidEmail(userLoginRequest.email())){
             throw new IncorrectDataException("Email is not valid");
@@ -41,13 +47,19 @@ public class UserAuthService {
         if (!passwordEncoder.matches(userLoginRequest.password(), user.getPassword())) {
             throw new IncorrectDataException("Incorrect data");
         }
+        var jwtToken = jwtUtil.generateToken(user.getEmail());
+        var refreshToken = jwtUtil.generateRefreshToken(user.getEmail());
 
-        return jwtUtil.generateToken(user.getEmail());
+        return AuthenticationResponse.builder()
+                .accessToken(jwtToken)
+                .refreshToken(refreshToken)
+                .build();
+
     }
 
 
     @Transactional
-    public String registerUser(UserRegistrationRequest userRegistrationRequest) {
+    public AuthenticationResponse register(UserRegistrationRequest userRegistrationRequest) {
 
         if(Utils.isValidEmail(userRegistrationRequest.getEmail())){
             throw new IncorrectDataException("Email is not valid");
@@ -68,10 +80,11 @@ public class UserAuthService {
 
         userRepository.save(user);
 
-        String token = jwtUtil.generateToken(email);
+        var jwtToken = jwtUtil.generateToken(email);
+        var refreshToken = jwtUtil.generateRefreshToken(email);
 
         ConfirmationToken confirmationToken = new ConfirmationToken(
-                token,
+                jwtToken,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
                 email,
@@ -79,31 +92,32 @@ public class UserAuthService {
         );
 
         confirmationService.saveConfirmationToken(confirmationToken);
-        confirmationService.sendEmailConfirmation(email, token);
+        confirmationService.sendEmailConfirmation(email, jwtToken);
 
-        return token;
+
+
+        return AuthenticationResponse.builder()
+                .accessToken(jwtToken)
+                .refreshToken(refreshToken)
+                .build();
     }
 
 
 
 
-    public UserDto validateToken(String token) {
-
-
+    public ResponseEntity<Boolean> validateToken(String token) {
 
         String email = jwtUtil.validateTokenAndRetrieveClaim(token);
         User user = userRepository.findUserByEmail(email)
                 .orElseThrow(() -> new NotFoundException("User not found"));
 
-        return   UserDto.builder()
-                .id(user.getUserId())
-                .email(user.getEmail())
-                .build();
+        return ResponseEntity.ok(user != null);
     }
 
 
+    @SneakyThrows
     @Transactional
-    public void confirmToken(String token) {
+    public URI confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationService
                 .getToken(token)
                 .orElseThrow(() -> new NotFoundException("Token not found"));
@@ -120,6 +134,7 @@ public class UserAuthService {
 
         confirmationService.setConfirmedAt(token);
         userRepository.enableAppUser(confirmationToken.getEmail());
+        return new URI("https://hyst.site/");
     }
 
     public List<User> findAllUsers() {
@@ -129,5 +144,33 @@ public class UserAuthService {
     public void updateUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+    }
+
+    public AuthenticationResponse refreshToken(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+
+        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        final String refreshToken;
+        final String userEmail;
+        if(authHeader == null || !authHeader.startsWith("Bearer ")){
+            throw new EmptyFieldException("Header is Null");
+        }
+        refreshToken = authHeader.substring(7);
+        String email = jwtUtil.validateTokenAndRetrieveClaim(refreshToken);
+        if(email != null){
+            var user = userRepository.findUserByEmail(email)
+                    .orElseThrow(() -> new NotFoundException("User Not Found"));
+            if(!jwtUtil.isTokenExpired(refreshToken)){
+                var accessToken = jwtUtil.generateToken(email);
+                return AuthenticationResponse.builder()
+                        .accessToken(accessToken)
+                        .refreshToken(refreshToken)
+                        .build();
+            }
+
+        }
+        throw new UserValidationException("Token cant be refreshed");
     }
 }

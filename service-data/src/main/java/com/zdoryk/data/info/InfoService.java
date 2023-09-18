@@ -13,6 +13,7 @@ import com.zdoryk.data.info.partner.Partner;
 import com.zdoryk.data.info.partner.PartnerRepository;
 import com.zdoryk.data.mappers.PartnerMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -20,16 +21,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class InfoService {
 
+    @Value("${config.file.upload-dir}")
+    private String pdfPath;
+
     private final PartnerRepository partnerRepository;
     private final ContactRepository contactRepository;
     private final ImageService imageService;
     private final PartnerMapper partnerMapper;
+
     @Transactional
     @CacheEvict(cacheNames = "partners", allEntries = true)
     public void savePartner(PartnerDTO partnerToSave){
@@ -45,6 +52,7 @@ public class InfoService {
                 .image(image)
                 .isEnabled(partnerToSave.isEnabled())
                 .publication(partnerToSave.publication())
+                .isActive(partnerToSave.isEnabled())
                 .build();
 
         imageService.saveImage(image);
@@ -54,10 +62,12 @@ public class InfoService {
     @Cacheable(cacheNames = "partners")
     public PartnersPagination getAllPartners(int pageNumber, int pageSize){
 
-        List<PartnerDTO> partnerDTOList = partnerRepository.findAll()
+        List<Partner> partners = partnerRepository.findAll();
+        Collections.reverse(partners);
+        List<PartnerDTO> partnerDTOList = partners
                 .stream()
                 .map(partnerMapper::toPartnerDTO)
-                .toList();
+                .collect(Collectors.toList());
 
 
         int totalItems = partnerDTOList.size();
@@ -66,8 +76,10 @@ public class InfoService {
         int startIndex = (pageNumber - 1) * pageSize;
         int endIndex = Math.min(startIndex + pageSize, totalItems);
 
+        partnerDTOList = partnerDTOList.subList(startIndex,endIndex);
+
         return new PartnersPagination(
-                partnerDTOList.subList(startIndex,endIndex),
+                partnerDTOList,
                 totalPages,
                 totalItems
         );
@@ -107,7 +119,7 @@ public class InfoService {
 
     @Transactional
 //    @Scheduled(fixedRate = 12 * 60 * 60 * 1000)
-    @Scheduled(fixedRate = 10000L)
+    @Scheduled(fixedRate = 1000L)
     public void enablePartners(){
 
         List<Partner> partners = partnerRepository
@@ -119,12 +131,13 @@ public class InfoService {
                 .toList();
 
         if(!partners.isEmpty()){
-            partners.forEach(card -> card.setIsEnabled(true));
+            partners.forEach(card -> {card.setIsEnabled(true); card.setIsActive(true);});
             partnerRepository.saveAll(partners);
         }
     }
 
     @Transactional
+    @CacheEvict(cacheNames = "partners", allEntries = true)
     public void updatePartner(PartnerDTO partnerDTO) {
         if(partnerDTO.id() == null){
             throw new NotValidFieldException("Id should exist");
@@ -147,7 +160,7 @@ public class InfoService {
             partner.setPublication(partnerDTO.publication());
         }
         if(partnerDTO.isEnabled() != null){
-            partner.setIsEnabled(partnerDTO.isEnabled());
+            partner.setIsActive(partnerDTO.isEnabled());
         }
         partnerRepository.save(partner);
     }
@@ -157,5 +170,6 @@ public class InfoService {
                 .orElseThrow(() -> new NotFoundException("Partner does not exist"));
         return partnerMapper.toPartnerDTO(partner);
     }
+
 
 }

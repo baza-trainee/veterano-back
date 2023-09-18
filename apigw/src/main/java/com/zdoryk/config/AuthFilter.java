@@ -29,10 +29,10 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
             "/api/v1/subscription",
             "/api/v1/search",
             "/api/v1/feedback",
-            "/api/v1/url",
-            "/api/v1/card",
-            "/api/v1/image",
-            "/api/v1/info"
+            "/api/v1/url"
+//            "/api/v1/info",
+//            "/api/v1/card"
+//            "/api/v1/data"
     );
 
     @Override
@@ -53,13 +53,15 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
                                 .get(HttpHeaders.AUTHORIZATION))
                                 .get(0);
 
-
                 String[] parts = authHeader.split(" ");
                 if (parts.length != 2 || !"Bearer".equals(parts[0])) {
                     throw new InvalidTokenException(HttpStatus.NO_CONTENT);
                 }
                 try {
                    jwtUtil.validateTokenAndRetrieveClaim(parts[1]);
+                   if(!jwtUtil.isTokenExpired(parts[1])){
+                       throw new InvalidTokenException(HttpStatus.UNAUTHORIZED);
+                   }
                 } catch (JWTVerificationException ignored) {
                     throw new InvalidTokenException(HttpStatus.UNAUTHORIZED);
                 }

@@ -3,11 +3,13 @@ package com.zdoryk.data.subscription;
 import com.zdoryk.data.core.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -33,12 +35,16 @@ public class SubscriptionController {
         );
     }
 
+    @SneakyThrows
     @GetMapping("/unsubscribe")
-    public ResponseEntity<?> unsubscribeUser(
+    public ResponseEntity<Void> unsubscribeUser(
             @RequestParam("email")
             String email
     ){
         subscriptionService.unsubscribe(email);
-        return ResponseEntity.ok().build();
+        return ResponseEntity
+                .status(302)
+                .location(new URI("https://hyst.site"))
+                .build();
     }
 }

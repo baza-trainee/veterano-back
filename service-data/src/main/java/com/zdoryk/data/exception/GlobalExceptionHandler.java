@@ -1,5 +1,6 @@
 package com.zdoryk.data.exception;
 
+import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +62,16 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleNotValidException(NotValidFieldException ex) {
         Map<String, String> errors = new HashMap<>();
         String errorMessage = ex.getMessage();
-        errors.put("error",errorMessage);
+        errors.put("error", errorMessage);
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errors);
+    }
+
+    @SneakyThrows
+    @ExceptionHandler(RedirectException.class)
+    public ResponseEntity<Void> handleRedirectException(RedirectException ex) {
+        return ResponseEntity
+                .status(302)
+                .location(new URI("https://hyst.site"))
+                .build();
     }
 }

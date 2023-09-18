@@ -6,13 +6,13 @@ import jakarta.validation.constraints.*;
 public record ContactDTO(
 
         @Pattern(
-                regexp = "^\\+?380\\d{9}$",
+                regexp = "^380\\s\\d{2}\\s\\d{3}\\s\\d{4}$",
                 message = "Invalid first phone number"
         )
         String firstPhoneNumber,
 
         @Pattern(
-                regexp = "^\\+?380\\d{9}$",
+                regexp = "^380\\s\\d{2}\\s\\d{3}\\s\\d{4}$",
                 message = "Invalid second phone number"
         )
         String secondPhoneNumber,

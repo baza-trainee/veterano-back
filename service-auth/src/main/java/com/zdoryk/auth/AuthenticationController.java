@@ -1,29 +1,30 @@
 package com.zdoryk.auth;
 
-import com.zdoryk.core.APICustomResponse;
+import com.zdoryk.core.AuthenticationResponse;
 import com.zdoryk.core.GenericController;
-import com.zdoryk.dto.UserDto;
 import com.zdoryk.dto.UserLoginRequest;
 import com.zdoryk.dto.UserRegistrationRequest;
-import com.zdoryk.resetToken.PasswordResetRequest;
 import com.zdoryk.resetToken.PasswordResetService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/users/auth")
 @RequiredArgsConstructor
 @Slf4j
-public class UserAuthController extends GenericController {
+public class AuthenticationController extends GenericController {
 
-    private final UserAuthService userAuthService;
+    private final AuthenticationService authenticationService;
     private final PasswordResetService passwordResetService;
 
 
@@ -36,7 +37,7 @@ public class UserAuthController extends GenericController {
             return ResponseEntity.ok(
                     Map.of(
                             "token",
-                            userAuthService.login(userLoginRequest)
+                            authenticationService.login(userLoginRequest)
                     )
             );
     }
@@ -47,20 +48,25 @@ public class UserAuthController extends GenericController {
             UserRegistrationRequest userRegistrationRequest){
 
             return ResponseEntity.ok(Map.of(
-               "token",userAuthService.registerUser(userRegistrationRequest))
+               "token", authenticationService.register(userRegistrationRequest))
             );
-    }
-    @GetMapping("/approve-token")
-    public void approveToken(@RequestParam("token") String token){
-            userAuthService.confirmToken(token);
     }
 
     @PostMapping("/validate-token")
-    public ResponseEntity<UserDto> validateToken(@RequestParam String token) {
+    public ResponseEntity<Boolean> validateToken(@RequestParam String token) {
         log.info("Trying to validate link {}", token);
-        return ResponseEntity.ok(userAuthService.validateToken(token));
+        return authenticationService.validateToken(token);
     }
 
+    @GetMapping("/approve-token")
+    public ResponseEntity<Void> redirectToOriginUrl(
+            @RequestParam("token") String token
+    ){
+        return ResponseEntity
+                .status(302)
+                .location(authenticationService.confirmToken(token))
+                .build();
+    }
 
     @GetMapping("/password-reset-request")
     public ResponseEntity<?> requestResetPassword(
@@ -80,9 +86,19 @@ public class UserAuthController extends GenericController {
     }
 
 
+    @PostMapping("/refresh-token")
+    public AuthenticationResponse refreshToken(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+        return authenticationService.refreshToken(request,response);
+    }
+
+
+
     @GetMapping
     public List<User> getAllUsers(){
-        return userAuthService.findAllUsers();
+        return authenticationService.findAllUsers();
     }
 
     @GetMapping("/ping")

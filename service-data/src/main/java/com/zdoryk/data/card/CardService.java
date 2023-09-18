@@ -44,8 +44,8 @@ public class CardService {
     @CacheEvict(cacheNames = "cards", allEntries = true)
     public void saveCard(CardSaveRequest cardSaveRequest) {
 
-        String country = cardSaveRequest.getLocation().getCountry().toLowerCase();
-        String city = cardSaveRequest.getLocation().getCity().toLowerCase();
+        String country = cardSaveRequest.getLocation().getCountry();
+        String city = cardSaveRequest.getLocation().getCity();
 
         Location location = locationService
                 .getLocationByCountryAndCity(new LocationDTO(city,country))
@@ -62,8 +62,9 @@ public class CardService {
                 new HashSet<>(cardSaveRequest.getCategories()))
         );
 
+
         Url url = Url.builder()
-                        .url(cardSaveRequest.getUrl())
+                        .url(cardSaveRequest.getUrl().replaceFirst("^https?://", ""))
                         .visitors(0L)
                         .build();
 
@@ -73,6 +74,7 @@ public class CardService {
                 .url(url)
                 .publication(cardSaveRequest.getPublication())
                 .isEnabled(false)
+                .isActive(false)
                 .build();
 
         List<Category> categories = cardSaveRequest.getCategories().stream()
@@ -119,7 +121,7 @@ public class CardService {
                 .orElseThrow(() -> new NotFoundException("NOT FOUND"));
 
         if(cardDTO.getIsEnabled() != null){
-            card.setIsEnabled(cardDTO.getIsEnabled());
+            card.setIsActive(cardDTO.getIsEnabled());
         }
         if(cardDTO.getDescription() != null && !cardDTO.getDescription().isEmpty()){
             card.setDescription(cardDTO.getDescription());
@@ -131,6 +133,7 @@ public class CardService {
             card.setPublication(cardDTO.getPublication());
             if(card.getPublication().isAfter(LocalDate.now())){
                 card.setIsEnabled(false);
+                card.setIsActive(false);
             }
         }
         if(cardDTO.getUrl() != null && !cardDTO.getUrl().isEmpty()) {
@@ -163,6 +166,7 @@ public class CardService {
             card.setLocation(location);
         }
         if(cardDTO.getCategories() != null && !cardDTO.getCategories().isEmpty()){
+
             List<Category> categories = cardDTO.getCategories().stream()
                     .map(category -> categoryService.findCategoryByName(category.getCategoryName())
                             .orElseGet(() -> new Category(category.getCategoryName()))
@@ -188,17 +192,6 @@ public class CardService {
         return cardRepository.findAll();
     }
 
-    public List<CardDTO> getAllCardsWithImageId(int page,int size) {
-
-        return cardRepository
-                .findAll(PageRequest.of(page, size))
-                .getContent()
-                .stream()
-                .map(cardMapper::toCardDTO)
-                .collect(Collectors.toList());
-    }
-
-
     public CardsPagination getAllCardsForAdmin(Integer pageNumber, Integer pageSize){
         List<Card> cards = getAllCards();
         int totalItems = cards.size();
@@ -211,8 +204,9 @@ public class CardService {
                 .subList(startIndex, endIndex)
                 .stream()
                 .map(cardMapper::toCardDTO)
-                .toList();
+                .collect(Collectors.toList());
 
+        Collections.reverse(cardDTOS);
         return new CardsPagination(
                 cardDTOS,
                 totalPages,
@@ -234,7 +228,7 @@ public class CardService {
                 .toList();
 
         if(!cards.isEmpty()){
-            cards.forEach(card -> card.setIsEnabled(true));
+            cards.forEach(card -> {card.setIsEnabled(true);card.setIsActive(true);});
             cardRepository.saveAll(cards);
             subscriptionService.notifyAllSubscriberAboutNewCards(cards);
         }
@@ -242,7 +236,7 @@ public class CardService {
     }
 
     public List<Card> getAllActivatedCards() {
-        return cardRepository.findCardByIsEnabledTrue();
+        return cardRepository.findCardByIsActiveTrue();
     }
 
     public CardDTO getCardById(Long id) {

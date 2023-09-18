@@ -5,10 +5,8 @@ import com.zdoryk.data.dto.PartnerDTO;
 import com.zdoryk.data.dto.PartnersPagination;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController

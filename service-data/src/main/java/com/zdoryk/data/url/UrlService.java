@@ -1,6 +1,6 @@
 package com.zdoryk.data.url;
 
-import com.zdoryk.data.exception.NotFoundException;
+import com.zdoryk.data.exception.RedirectException;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -23,13 +23,13 @@ public class UrlService {
 
     @SneakyThrows
     public URI redirectById(UUID id){
-        Url uri = urlRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("By this id does not exist url"));
+        System.out.println(id);
+        Url uri = urlRepository.getUrlById(id)
+                .orElseThrow(() -> new RedirectException("By this id does not exist url"));
 
         uri.setVisitors(uri.getVisitors() + 1L);
         urlRepository.save(uri);
-
-        return new URI(uri.getUrl());
+        return new URI("https://"+uri.getUrl());
     }
 
     public Optional<Url> findByUrlString(String url){

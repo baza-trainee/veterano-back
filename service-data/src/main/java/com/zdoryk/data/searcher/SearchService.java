@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,9 +33,20 @@ public class SearchService {
     public List<CategoryDto> getAllCategories() {
         return categoryService.getAllCategories()
                 .stream()
+                .filter(category -> category.getCardList().stream().anyMatch(Card::getIsActive))
                 .map(category -> new CategoryDto(
-                        category.getCategoryName()
-                ))
+                        category.getCategoryName())
+                )
+                .collect(Collectors.toList());
+    }
+
+
+    public List<CategoryDto> getAllCategoriesAdmin() {
+        return categoryService.getAllCategories()
+                .stream()
+                .map(category -> new CategoryDto(
+                        category.getCategoryName())
+                )
                 .collect(Collectors.toList());
     }
 
@@ -42,21 +54,20 @@ public class SearchService {
     public CardsPagination findCardByAllQueries(String queue,
                                                 LinkedList<String> countries,
                                                 LinkedList<String> cities,
-                                                List<String> categories,
+                                                String category,
                                                 Integer pageNumber,
                                                 Integer pageSize
     ) {
         if(!queue.isEmpty()) {
             if (queue
-                    .replaceAll("[a-zA-Z]", "")
+                    .replaceAll("[a-zA-ZА-Яа-яЁё]", "")
                     .matches("[0-9!@#$%^&*()_+\\-=\\[\\]{};':\",./<>?\\\\|]+") ||
-                    queue.length() < 2 || queue.length() > 50) {
-                throw new NotValidFieldException("queue not matches to pattern");
+                    queue.length() > 50) {
+                throw new NotValidFieldException("Queue not matches to pattern");
             }
         }
 
         List<LocationDTO> locationList = new ArrayList<>();
-
         if (countries != null && cities != null){
             if(countries.size() == cities.size()){
                 for (int i = 0; i < countries.size(); i++) {
@@ -67,10 +78,6 @@ public class SearchService {
                     locationList.add(locationDto);
                 }
             }
-        }
-        if (categories != null && !categories.isEmpty()) {
-            categories.replaceAll(s -> s + " ");
-            categories.replaceAll(s -> s.replaceAll("\\s+"," "));
         }
         List<Card> cards = cardService.getAllActivatedCards();
         if(!queue.isEmpty()) {
@@ -85,22 +92,32 @@ public class SearchService {
             cards = cards.stream()
                     .filter(card -> locationList.stream()
                             .anyMatch(locationDTO ->
-                                    locationDTO.getCountry().equals(card.getLocation().getCountry()) &&
-                                    locationDTO.getCity().equals(card.getLocation().getCity())
+                                            locationDTO.getCity().toLowerCase().startsWith(card.getLocation().getCity().toLowerCase()) &&
+                                            locationDTO.getCountry().toLowerCase().startsWith(card.getLocation().getCountry().toLowerCase())
+
                             )
                     )
                     .collect(Collectors.toList());
 
         }
-        if (categories != null && !categories.isEmpty()) {
+        if (category != null && !category.isEmpty()) {
+            String finalCategory = category.toLowerCase().replaceAll(" ", "");
+
             cards = cards
-                    .stream()
-                    .filter(card ->
-                            card.getCategories()
-                            .stream()
-                            .anyMatch(category -> categories.contains(category.getCategoryName()))
-                    )
-                    .toList();
+                        .stream()
+                        .filter(card ->
+                                card.getCategories()
+                                        .stream()
+                                        .anyMatch(cat -> cat
+                                                .getCategoryName()
+                                                .toLowerCase()
+                                                .replaceAll(" ","")
+                                                .startsWith(finalCategory)
+                                        )
+
+                        )
+                        .collect(Collectors.toList());
+
         }
 
         int totalItems = cards.size();
@@ -109,12 +126,14 @@ public class SearchService {
         int startIndex = (pageNumber - 1) * pageSize;
         int endIndex = Math.min(startIndex + pageSize, totalItems);
 
-        List<CardDTO> cardWithImageIds = cards
+        Collections.reverse(cards);
+        List<CardDTO> cardWithImageIds = new ArrayList<>(cards
                 .subList(startIndex, endIndex)
                 .stream()
-                .filter(Card::getIsEnabled)
+                .filter(Card::getIsActive)
                 .map(cardMapper::toCardDTO)
-                .toList();
+                .toList());
+
 
         return new CardsPagination(
                 cardWithImageIds,
@@ -123,12 +142,13 @@ public class SearchService {
         );
     }
 
-    public List<LocationDTO> getAllCounties() {
+    public List<LocationDTO> getAllLocations() {
         return locationService.getAll()
                 .stream()
+                .filter(location -> location.getCardList().stream().anyMatch(Card::getIsActive))
                 .map(location -> new LocationDTO(
-                        location.getCountry(),
-                        location.getCity()
+                        location.getCity(),
+                        location.getCountry()
                 ))
                 .collect(Collectors.toList());
     }
@@ -144,10 +164,17 @@ public class SearchService {
                 .filter(PartnerDTO::isEnabled)
                 .toList();
 
+        if(!partnerDTOList.isEmpty()) {
+            return new PartnersPagination(
+                    partnerDTOList,
+                    partners.totalPages(),
+                    partners.totalSize()
+            );
+        }
         return new PartnersPagination(
                 partnerDTOList,
-                partners.totalPages(),
-                partners.totalSize()
+                0,
+                0
         );
     }
 }

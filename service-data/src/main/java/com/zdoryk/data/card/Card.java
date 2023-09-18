@@ -36,6 +36,7 @@ public class Card implements Serializable {
 
     private String title;
 
+    @Column(length = 500)
     private String description;
 
     @JsonIgnoreProperties({"location","imageList","cardList","url"})
@@ -49,6 +50,8 @@ public class Card implements Serializable {
     private LocalDate publication;
 
     private Boolean isEnabled;
+
+    private Boolean isActive;
 
     @JsonIgnoreProperties("cardList")
     @ManyToMany()

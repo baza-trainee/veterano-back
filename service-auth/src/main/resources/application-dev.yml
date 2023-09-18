@@ -22,8 +22,8 @@ spring:
 
 config:
   urls:
-    approve-register: http://45.94.157.117:8080/api/v1/users/auth/approve-token?token=
-    reset-password: http://45.94.157.117:8080/api/v1/users/auth/password-reset?token=
+    approve-register: https://hyst.baza-trainee-back.space/api/v1/users/auth/approve-token?token=
+    reset-password: https://hyst.baza-trainee-back.space/api/v1/users/auth/password-reset?token=
 
 security:
   jwt:

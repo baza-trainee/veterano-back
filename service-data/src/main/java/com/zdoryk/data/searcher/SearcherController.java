@@ -1,22 +1,17 @@
 package com.zdoryk.data.searcher;
 
 import com.zdoryk.data.dto.*;
-import com.zdoryk.data.image.Image;
 import com.zdoryk.data.image.ImageService;
 import com.zdoryk.data.info.InfoService;
 import com.zdoryk.data.info.contact.Contact;
-import com.zdoryk.data.info.partner.Partner;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.ByteArrayInputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -58,7 +53,7 @@ public class SearcherController {
             @RequestParam(
                     value = "category",
                     required = false
-            ) List<String> categories,
+            ) String category,
             @RequestParam(
                     value = "page",
                     defaultValue = "1"
@@ -73,7 +68,7 @@ public class SearcherController {
                 queue,
                 countries,
                 cities,
-                categories,
+                category,
                 page,
                 size
         ));
@@ -101,9 +96,11 @@ public class SearcherController {
         return ResponseEntity.ok(searchService.getAllCategories());
     }
 
+
+
     @GetMapping("all-countries")
     public ResponseEntity<List<LocationDTO>> getAllCountries(){
-        return ResponseEntity.ok(searchService.getAllCounties());
+        return ResponseEntity.ok(searchService.getAllLocations());
     }
 
     @GetMapping("all-partners")

@@ -11,7 +11,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/veterano_local_db
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -21,6 +21,8 @@ spring:
 config:
   urls:
     approve-register: http://localhost:8080/api/v1/users/auth/approve-token?token=
+  file:
+    upload-dir: service-data/src/main/resources/pdfs
 
 security:
   jwt:

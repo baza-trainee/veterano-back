@@ -15,7 +15,9 @@ public record CardDTO(
     Long cardId,
     String description,
     String title,
-    UUID url,
+
+    UUID urlId,
+    String url,
     Long imageId,
     @JsonFormat(pattern="dd.MM.yyyy")
     LocalDate publication,
